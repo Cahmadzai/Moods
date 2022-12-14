@@ -16,13 +16,15 @@ class User(db.Model):
     email = db.Column(db.String, unique=True)
     password = db.Column(db.String)
 
+    status_posts = db.relationship("Status", back_populates="user")
+
     def __repr__(self):
         return f'<User user_id={self.user_id} user_handle={self.user_handle} email={self.email}>'
 
 class Status(db.Model):
     """A mood status post."""
 
-    __tablename__ = "status posts"
+    __tablename__ = "status_posts"
 
     status_id = db.Column(db.Integer,
                         autoincrement=True,
@@ -31,6 +33,9 @@ class Status(db.Model):
     post_create_date = db.Column(db.DateTime)
     mood_id = db.Column(db.Integer, db.ForeignKey("moods.mood_id"))
     user_id = db.Column(db.Integer, db.ForeignKey("users.user_id"))
+
+    user = db.relationship("User", back_populates="status_posts")
+    mood = db.relationship("Mood", back_populates="status_posts")
 
     def __repr__(self):
         return f'<Status status_id={self.status_id} status_id_description={self.status_id_description} post_create_date{self.post_create_date}>'
@@ -44,6 +49,8 @@ class Mood(db.Model):
                         autoincrement=True,
                         primary_key=True)
     mood_type = db.Column(db.String)
+
+    status_posts = db.relationship("Status", back_populates="mood")
 
     def __repr__(self):
         return f'<Mood mood_id={self.mood_id} mood_type={self.mood_type}>'
