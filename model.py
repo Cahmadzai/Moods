@@ -29,7 +29,7 @@ class Status(db.Model):
     status_id = db.Column(db.Integer,
                         autoincrement=True,
                         primary_key=True)
-    status_id_description = db.Column(db.String(255))
+    status_description = db.Column(db.String(255))
     post_create_date = db.Column(db.DateTime)
     mood_id = db.Column(db.Integer, db.ForeignKey("moods.mood_id"))
     user_id = db.Column(db.Integer, db.ForeignKey("users.user_id"))
@@ -38,7 +38,7 @@ class Status(db.Model):
     mood = db.relationship("Mood", back_populates="status_posts")
 
     def __repr__(self):
-        return f'<Status status_id={self.status_id} status_id_description={self.status_id_description} post_create_date{self.post_create_date}>'
+        return f'<Status status_id={self.status_id} status_description={self.status_description} post_create_date{self.post_create_date}>'
 
 class Mood(db.Model):
     """A mood type."""
@@ -56,7 +56,7 @@ class Mood(db.Model):
         return f'<Mood mood_id={self.mood_id} mood_type={self.mood_type}>'
 
 
-def connect_to_db(flask_app, db_uri="postgresql:///model", echo=True):
+def connect_to_db(flask_app, db_uri="postgresql:///model", echo=False):
     flask_app.config["SQLALCHEMY_DATABASE_URI"] = db_uri
     flask_app.config["SQLALCHEMY_ECHO"] = echo
     flask_app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
