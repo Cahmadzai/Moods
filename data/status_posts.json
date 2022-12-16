@@ -1,9 +1,18 @@
 [
     {
-      "user_handle": "Omar123",
+      "user_handle": "HelloWorld123",
       "status_description": "I'm feeling great!",
-      "mood_type": "Fantastic",
-      "post_create_date": "2019-09-20 07"
+      "mood_type": "Happy"
+    },
+    {
+        "user_handle": "Christina34",
+        "status_description": "I'm feeling great!",
+        "mood_type": "Sad"
+    },
+    {
+        "user_handle": "Bob29",
+        "status_description": "I'm feeling great!",
+        "mood_type": "Frustrated"
     }
    
 ]
