@@ -18,7 +18,7 @@ def create_status(user_id, status_description, post_create_date, mood_id):
     return status_post
 
 def create_mood(mood_type):
-    
+
     mood = Mood(mood_type=mood_type)
 
     return mood
