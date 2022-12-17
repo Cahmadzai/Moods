@@ -11,11 +11,16 @@ def create_user(user_handle, email, password):
 
 def create_status(user_id, status_description, post_create_date, mood_id):
     """Create and return a new mood status post."""
-    print(status_description)
     status_post = Status(user_id=user_id, status_description=status_description, 
     post_create_date=post_create_date, mood_id=mood_id) 
 
     return status_post
+
+    #returning all status posts
+
+def get_all_status_posts():
+    """Return all status posts."""
+    return Status.query.all()
 
 def create_mood(mood_type):
 
