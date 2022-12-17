@@ -1,0 +1,12 @@
+
+{% extends 'base.html' %}
+{% block title %}All Status Posts{% endblock %}
+
+
+{% block body %}
+{% for status_post in status_posts %}
+  <p>{{ status_post }}</p>
+{% endfor %}
+{% endblock body %}
+  
+
