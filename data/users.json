@@ -1,0 +1,22 @@
+[
+    {
+      "user_id": "1",
+      "user_handle": "HelloWorld123",
+      "email": "HelloWorld123@gmail.com",
+      "password": "hello123"
+    },
+
+    {
+        "user_id": "2",
+        "user_handle": "Christina34",
+        "email": "Christina34@gmail.com",
+        "password": "tina"
+    },
+    {
+        "user_id": "3",
+        "user_handle": "Bob29",
+        "email": "bob29@gmail.com",
+        "password": "bobismyname"
+      }
+   
+]
