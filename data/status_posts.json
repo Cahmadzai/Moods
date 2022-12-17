@@ -6,12 +6,12 @@
     },
     {
         "user_handle": "Christina34",
-        "status_description": "I'm feeling great!",
+        "status_description": "I'm feeling sad!",
         "mood_type": "Sad"
     },
     {
         "user_handle": "Bob29",
-        "status_description": "I'm feeling great!",
+        "status_description": "I'm feeling angry!",
         "mood_type": "Frustrated"
     }
    
