@@ -14,6 +14,11 @@ def get_user_by_email(email):
 
     return User.query.filter(User.email == email).first()
 
+def get_user_statuses(user_id):
+    """Return statuses for one user on their profile page"""
+    #double check this, might be adding time expiration in the future or date separation
+    return Status.query.filter(Status.user_id == user_id).all()
+
 
 def create_status(user_id, status_description, post_create_date, mood_id):
     """Create and return a new mood status post."""
