@@ -17,6 +17,23 @@ def homepage():
 
     return render_template('homepage.html')
 
+#creating a route for a user profile page
+@app.route("/profile")
+def all_user_statuses():
+    """A user can view all of their statuses on their profile page"""
+    #if no user email == no one logged in - redirect to home
+    #crashing when no one logged in
+
+    if "user_email" not in session:
+        flash("Please log in to view your profile")
+        return redirect("/")
+    else:
+        user_email = session["user_email"]
+        user = crud.get_user_by_email(user_email)
+        user_id = user.user_id
+        status_posts = crud.get_user_statuses(user_id)
+        return render_template('profile.html', status_posts=status_posts)   
+
 #creating a route for account creation
 @app.route('/users', methods=['POST'])
 def register_user():
