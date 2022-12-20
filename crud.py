@@ -9,6 +9,12 @@ def create_user(user_handle, email, password):
 
     return user
 
+def get_user_by_email(email):
+    """Return a user by email."""
+
+    return User.query.filter(User.email == email).first()
+
+
 def create_status(user_id, status_description, post_create_date, mood_id):
     """Create and return a new mood status post."""
     status_post = Status(user_id=user_id, status_description=status_description, 
@@ -16,7 +22,6 @@ def create_status(user_id, status_description, post_create_date, mood_id):
 
     return status_post
 
-    #returning all status posts
 
 def get_all_status_posts():
     """Return all status posts."""
