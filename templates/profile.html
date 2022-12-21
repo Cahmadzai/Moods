@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %}Your profile{% endblock %}
+
+
+{% block body %}
+{% for status_post in status_posts %}
+  <p>
+    {{ status_post.user.user_handle }}
+    {{ status_post.mood.mood_type }}
+    {{ status_post }}
+  </p>
+
+{% endfor %}
+{% endblock body %}
