@@ -22,16 +22,21 @@ def homepage():
 def all_user_statuses():
     """A user can view all of their statuses on their profile page"""
     #if no user email == no one logged in - redirect to home
-
+    #might not even need this? User can't get to profile page without logging in
     if "user_email" not in session:
         flash("Please log in to view your profile")
-        return redirect("/")
+        return redirect("/login")
     else:
         user_email = session["user_email"]
         user = crud.get_user_by_email(user_email)
         user_id = user.user_id
         status_posts = crud.get_user_statuses(user_id)
         return render_template('profile.html', status_posts=status_posts)   
+
+#creating login page
+@app.route('/login')
+def login():
+    return render_template('login.html')
 
 #creating a route for account creation
 @app.route('/users', methods=['POST'])
@@ -53,7 +58,7 @@ def register_user():
         db.session.commit()
         flash("Account created! Please log in.")
 
-    return redirect("/")
+    return redirect("/login")
 
 #login
 @app.route("/login", methods=["POST"])
@@ -66,12 +71,12 @@ def process_login():
     user = crud.get_user_by_email(email)
     if not user or user.password != password:
         flash("The email or password you entered was incorrect.")
+        return redirect("/login")
     else:
         # Log in user by storing the user's email in session
         session["user_email"] = user.email
         flash(f"Welcome back, {user.email}!")
-
-    return redirect("/")
+        return redirect("/")
 
 # Route to get all status_posts
 # Calling function from crud to get all movies
