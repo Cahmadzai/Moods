@@ -1,11 +1,11 @@
 [
     {
-        "mood_type": "Happy"
+        "mood_type": "happy"
     },
     {
-        "mood_type": "Sad"
+        "mood_type": "sad"
     },
     {
-        "mood_type": "Frustrated"
+        "mood_type": "frustrated"
     }  
 ]
