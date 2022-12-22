@@ -19,6 +19,16 @@ def homepage():
 
     return render_template('homepage.html')
 
+# Route to get all status_posts
+# Calling function from crud to get all status posts
+@app.route('/status_posts')
+def all_status_posts():
+    """View all status_posts from all users."""
+
+    status_posts = crud.get_all_status_posts()
+
+    return render_template('all_status_posts.html', status_posts=status_posts)
+
 #creating a route for a user profile page
 @app.route('/profile')
 def all_user_statuses():
@@ -36,7 +46,7 @@ def all_user_statuses():
         return render_template('profile.html', status_posts=status_posts) 
 
 #Route to post a status
-@app.route('/profile', methods =['GET','POST'])
+@app.route('/profile', methods =['POST'])
 def post_a_status():
     # Using request.form because mood and description must be present to post
     # Retrieving the 'mood' and 'description' form data
@@ -56,7 +66,10 @@ def post_a_status():
     db.session.commit()
    
     flash('Your status has been posted!')
-    return redirect('/profile')  
+    #Might need to change this in the future so that when posting a new status
+    #it stays on the page that the form is on.  This would be done through
+    #Event listner, AJAX request, DOM manipulation, through front end javascript
+    return redirect('/status_posts')  
 
 
 #creating login page
@@ -110,15 +123,6 @@ def logout():
     session.clear()
     return redirect('/login')
 
-# Route to get all status_posts
-# Calling function from crud to get all status posts
-@app.route('/status_posts')
-def all_status_posts():
-    """View all status_posts."""
-
-    status_posts = crud.get_all_status_posts()
-
-    return render_template('all_status_posts.html', status_posts=status_posts)
 
 
 
