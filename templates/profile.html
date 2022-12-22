@@ -3,6 +3,20 @@
 
 
 {% block body %}
+<h2>Post a new status</h2>
+<form action="/profile" method="POST">
+  <label for="mood-select">Choose your mood:</label>
+<select name="mood" id="mood-select">
+  <option value="happy">Happy</option>
+  <option value="sad">Sad</option>
+</select>
+  <label for="status_description">Description:</label>
+  <input type="text" name="description" id="status_description">
+  <br>
+
+  <button type="submit">Post</button>
+
+</form>
 {% for status_post in status_posts %}
   <p>
     {{ status_post.user.user_handle }}
