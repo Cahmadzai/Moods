@@ -4,6 +4,8 @@ from flask import (Flask, render_template, request, flash, session,
 from model import connect_to_db, db
 import crud
 from jinja2 import StrictUndefined
+from datetime import datetime
+
 
 #configuring the Flask instance.  Creating secret key to allow flash and session to work
 app = Flask(__name__)
@@ -18,7 +20,7 @@ def homepage():
     return render_template('homepage.html')
 
 #creating a route for a user profile page
-@app.route("/profile")
+@app.route('/profile')
 def all_user_statuses():
     """A user can view all of their statuses on their profile page"""
     #if no user email == no one logged in - redirect to home
@@ -31,7 +33,31 @@ def all_user_statuses():
         user = crud.get_user_by_email(user_email)
         user_id = user.user_id
         status_posts = crud.get_user_statuses(user_id)
-        return render_template('profile.html', status_posts=status_posts)   
+        return render_template('profile.html', status_posts=status_posts) 
+
+#Route to post a status
+@app.route('/profile', methods =['GET','POST'])
+def post_a_status():
+    # Using request.form because mood and description must be present to post
+    # Retrieving the 'mood' and 'description' form data
+    mood = request.form["mood"] 
+    status_description = request.form["description"]
+    #getting today's date/time
+    post_create_date = datetime.now()
+    #Retrieve user with matching email from session
+    user_email = session["user_email"]
+    user = crud.get_user_by_email(user_email)
+    #Retrieve mood value and return mood type
+    mood_from_db = crud.get_mood_type(mood)
+    # Creating a new status post
+    new_status_post = crud.create_status(user.user_id, status_description, post_create_date, mood_from_db.mood_id)
+
+    db.session.add(new_status_post)
+    db.session.commit()
+   
+    flash('Your status has been posted!')
+    return redirect('/profile')  
+
 
 #creating login page
 @app.route('/login')
@@ -61,7 +87,7 @@ def register_user():
     return redirect("/login")
 
 #login
-@app.route("/login", methods=["POST"])
+@app.route('/login', methods=["POST"])
 def process_login():
     """Process user login."""
 
@@ -78,8 +104,14 @@ def process_login():
         flash(f"Welcome back, {user.email}!")
         return redirect("/")
 
+#logout
+@app.route('/logout')
+def logout():
+    session.clear()
+    return redirect('/login')
+
 # Route to get all status_posts
-# Calling function from crud to get all movies
+# Calling function from crud to get all status posts
 @app.route('/status_posts')
 def all_status_posts():
     """View all status_posts."""
@@ -87,7 +119,6 @@ def all_status_posts():
     status_posts = crud.get_all_status_posts()
 
     return render_template('all_status_posts.html', status_posts=status_posts)
-
 
 
 
