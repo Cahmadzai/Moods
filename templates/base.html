@@ -15,7 +15,11 @@
         {{ msg }}
       </p>
     {% endfor %}
-    
+
+    {% if 'user_email' in session %}
+      <a href="/logout">Log out</a>
+    {% endif %}
+
     {% block body %}{% endblock %}
 
     {% block after_body %}{% endblock %}
