@@ -71,6 +71,20 @@ def post_a_status():
     #Event listner, AJAX request, DOM manipulation, through front end javascript
     return redirect('/status_posts')  
 
+#delete a status
+#int tells Flask to expect integer value for the status_id
+#if just use <status_id> would treat URL parameter as string
+@app.route('/delete-status/<int:status_id>', methods=['POST'])
+def delete_status(status_id):
+    """Delete a status by id."""
+    #may want to add authorization checks to make sure only user that
+    #posted status can delete (come back to this)
+    if crud.delete_status(status_id):
+        flash("Status deleted.")
+    else:
+        flash("There was an error when trying to delete your status. Please try again")
+        #I might need to use AJAX to fix these redirects and stay on page without reloading
+    return redirect("/profile")
 
 #creating login page
 @app.route('/login')
