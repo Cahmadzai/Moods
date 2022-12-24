@@ -26,6 +26,16 @@ def create_status(user_id, status_description, post_create_date, mood_id):
 
     return status_post
 
+def delete_status(status_id):
+    """Deletet a status by id."""
+    status = Status.query.filter(Status.status_id == status_id).first()
+    if status:
+        db.session.delete(status)
+        db.session.commit()
+        return True
+    else:
+        return False
+
 def get_all_status_posts():
     """Return all status posts."""
     return Status.query.all()
