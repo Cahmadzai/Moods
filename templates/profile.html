@@ -3,7 +3,7 @@
 
 
 {% block body %}
-<h2>Post a new status</h2>
+<h1>Post a new status</h1>
 <form action="/profile" method="POST">
   <label for="mood-select">Choose your mood:</label>
 <select name="mood" id="mood-select">
@@ -17,12 +17,20 @@
   <button type="submit">Post</button>
 
 </form>
+<div class=page>
+<h2>Your statuses</h2>
+<ul class="statuses">
 {% for status_post in status_posts %}
-  <p>
+  <li>
     {{ status_post.user.user_handle }}
     {{ status_post.mood.mood_type }}
     {{ status_post }}
-  </p>
-
+    <form action="{{ url_for('delete_status',
+    status_id=status_post.status_id) }}" method="post">
+      <input type="submit" value="Delete">
+    </form>
+  </li>
 {% endfor %}
+</ul>
+</div>
 {% endblock body %}
