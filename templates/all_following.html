@@ -4,5 +4,21 @@
 {% block body %}
     {% for user in followed %}
         <h2>{{ user.user_handle }}</h2>
+        {% for status in user.status_posts %}
+            <p>{{ status.status_description }}
+            </p>
+        {% endfor %}
     {% endfor %}
+    {% if not followed %}
+        <p>Currently not following any users</p>
+    {% endif %}
 {% endblock %}
+
+
+
+
+
+
+
+
+
