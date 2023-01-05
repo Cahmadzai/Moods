@@ -33,6 +33,21 @@ with open('data/users.json') as f:
     model.db.session.add_all(users_in_db)
     model.db.session.commit()
 
+#load follows from JSON file
+with open('data/follows.json') as f:
+    follows_data = json.loads(f.read())
+    # Created empty list 
+    follows_in_db = []
+    for follow in follows_data:
+        followed_user_id = follow['followed_user_id']
+        following_user_id = follow['following_user_id']
+            
+        db_follow = crud.create_follow(followed_user_id, following_user_id)
+        follows_in_db.append(db_follow)
+    
+    model.db.session.add_all(follows_in_db)
+    model.db.session.commit()
+
 
 with open('data/moods.json') as f:
     moods_data = json.loads(f.read())
