@@ -29,6 +29,29 @@ def all_status_posts():
 
     return render_template('all_status_posts.html', status_posts=status_posts)
 
+# Route to view all followed users and their statuses
+@app.route('/following')
+def all_following():
+    """View all followed users and their statuses"""
+    #checks if user is logged in 
+    if "user_email" not in session:
+        flash("Please log in to view users you follow")
+        return redirect("/login")
+    else:
+        user_email = session["user_email"]
+        user = crud.get_user_by_email(user_email)
+        #gets list of followed users and pass in user_id
+        followed = crud.get_users_followed(user.user_id)
+        #pass in followed users to be displayed in template
+        return render_template('all_following.html', followed=followed)
+
+
+# @app.route('/following/<int:user_id>')
+# def all_following(user_id):
+#     """View all followed users and their statuses"""
+#     followed = crud.get_users_followed(user_id)
+#     return render_template('all_following.html', followed=followed)
+
 #creating a route for a user profile page
 @app.route('/profile')
 def all_user_statuses():
