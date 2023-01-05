@@ -1,5 +1,5 @@
 """CRUD operations."""
-from model import db, User, Status, Mood, connect_to_db
+from model import db, User, Status, Mood, Follow, connect_to_db
 from datetime import datetime
 
 def create_user(user_handle, email, password):
@@ -8,6 +8,17 @@ def create_user(user_handle, email, password):
     user = User(user_handle=user_handle, email=email, password=password)
 
     return user
+
+#create follow
+def create_follow(followed_user_id, following_user_id):
+    """Create and return a follow."""
+
+    follow = Follow(followed_user_id=followed_user_id, following_user_id=following_user_id)
+
+    return follow 
+
+#create unfollow
+
 
 def get_user_by_email(email):
     """Return a user by email."""
