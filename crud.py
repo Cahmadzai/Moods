@@ -19,13 +19,15 @@ def create_follow(followed_user_id, following_user_id):
 
 def get_users_followed(user_id):
     """Return followed users and their statuses"""
-    # returning followed user_ids
+    # follows represents users that with user_id is following
+    # returns Follow objects where following_user_id field is equal to user id paramater passed in 
     follows = Follow.query.filter_by(following_user_id=user_id).all()
     followed_user_id_list = []
     for follow in follows:
         followed_user_id_list.append(follow.followed_user_id)
     print(followed_user_id_list)
 
+    #finding all users whose user_id is in followed_user_id_list and storing in followed_users
     followed_users = User.query.filter(User.user_id.in_(followed_user_id_list)).all()
     #statuses = Status.query.filter(Status.user_id.in_(followed_user_id_list)).all()
 
