@@ -6,6 +6,7 @@
         <h2>{{ user.user_handle }}</h2>
         {% for status in user.status_posts %}
             <p>{{ status.status_description }}
+		   {{ status.post_create_date }}
             </p>
         {% endfor %}
     {% endfor %}
