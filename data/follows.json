@@ -12,6 +12,11 @@
     {
         "followed_user_id": "3",
         "following_user_id": "1"
+      },
+    
+      {
+        "followed_user_id": "3",
+        "following_user_id": "2"
       }
    
 ]
