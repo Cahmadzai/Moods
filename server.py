@@ -41,9 +41,13 @@ def all_following():
         user_email = session["user_email"]
         user = crud.get_user_by_email(user_email)
         #gets list of followed users and pass in user_id
-        followed = crud.get_users_followed(user.user_id)
+        followed_users = crud.get_users_followed(user.user_id)
         #pass in followed users to be displayed in template
-        return render_template('all_following.html', followed=followed)
+        status_posts = []
+        for followed_user in followed_users:
+            status_posts.append(followed_user.status_posts)
+
+        return render_template('all_following.html', followed=followed_users, status_posts=status_posts)
 
 
 # @app.route('/following/<int:user_id>')
