@@ -21,6 +21,25 @@ class User(db.Model):
     def __repr__(self):
         return f'<User user_id={self.user_id} user_handle={self.user_handle} email={self.email}>'
 
+
+#creating Follower class
+#query directly from followers table instead of db.
+#and when clicking button for follow
+#use user id to query in follow table
+class Follow(db.Model):
+    """A user can follow another user or be followed."""
+
+    __tablename__ = "follows"
+
+    follow_id = db.Column(db.Integer,
+                        autoincrement=True,
+                        primary_key=True)
+    followed_user_id = db.Column(db.Integer, db.ForeignKey("users.user_id"))
+    following_user_id = db.Column(db.Integer, db.ForeignKey("users.user_id"))
+
+    def __repr__(self):
+        return f'<Follow follow_id={self.follow_id} followed_user_id={self.followed_user_id} following_user_id={self.following_user_id}>'
+
 class Status(db.Model):
     """A mood status post."""
 
