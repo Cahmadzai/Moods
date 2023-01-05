@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% block title %}Following{% endblock %}
+
+{% block body %}
+    {% for user in followed %}
+        <h2>{{ user.user_handle }}</h2>
+    {% endfor %}
+{% endblock %}
