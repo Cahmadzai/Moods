@@ -11,13 +11,25 @@ def create_user(user_handle, email, password):
 
 #create follow
 def create_follow(followed_user_id, following_user_id):
-    """Create and return a follow."""
+    """Create and return a follow object."""
 
     follow = Follow(followed_user_id=followed_user_id, following_user_id=following_user_id)
 
     return follow 
 
-#create unfollow
+def get_users_followed(user_id):
+    """Return followed users and their statuses"""
+    # returning followed user_ids
+    follows = Follow.query.filter_by(following_user_id=user_id).all()
+    followed_user_id_list = []
+    for follow in follows:
+        followed_user_id_list.append(follow.followed_user_id)
+    print(followed_user_id_list)
+
+    followed_users = User.query.filter(User.user_id.in_(followed_user_id_list)).all()
+    #statuses = Status.query.filter(Status.user_id.in_(followed_user_id_list)).all()
+
+    return followed_users
 
 
 def get_user_by_email(email):
