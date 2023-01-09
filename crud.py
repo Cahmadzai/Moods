@@ -17,6 +17,17 @@ def create_follow(followed_user_id, following_user_id):
 
     return follow 
 
+#create unfollow
+def create_unfollow(followed_user_id, following_user_id):
+    """Unfollow a user."""
+    follow = Follow.query.filter_by(Follow.followed_user_id == followed_user_id, Follow.following_user_id == following_user_id).first()
+    if follow:
+        db.session.delete(follow)
+        db.session.commit()
+        return True
+    else:
+        return False
+   
 def get_users_followed(user_id):
     """Return followed users and their statuses"""
     # follows represents users that user_id is following
@@ -52,7 +63,7 @@ def create_status(user_id, status_description, post_create_date, mood_id):
     return status_post
 
 def delete_status(status_id):
-    """Deletet a status by id."""
+    """Delete a status by id."""
     status = Status.query.filter(Status.status_id == status_id).first()
     if status:
         db.session.delete(status)
