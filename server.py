@@ -50,11 +50,48 @@ def all_following():
         return render_template('all_following.html', followed=followed_users, status_posts=status_posts)
 
 
-# @app.route('/following/<int:user_id>')
-# def all_following(user_id):
-#     """View all followed users and their statuses"""
-#     followed = crud.get_users_followed(user_id)
-#     return render_template('all_following.html', followed=followed)
+@app.route('/unfollow', methods=['POST'])
+def unfollow():
+    """Unfollow a user"""
+    #specifying key of the data I want to retrieve
+    followed_user_id = request.form['followed_user_id']
+    following_user_id = request.form['following_user_id']
+    #creating unfollow object
+    if crud.create_unfollow(followed_user_id, following_user_id):
+        return redirect('/following')
+    else:
+        flash('An error has occured.  Unable to unfollow user')
+        return redirect('/following')
+
+
+# #Route to post a status
+# @app.route('/profile', methods =['POST'])
+# def post_a_status():
+#     # Using request.form because mood and description must be present to post
+#     # Retrieving the 'mood' and 'description' form data
+#     mood = request.form["mood"] 
+#     status_description = request.form["description"]
+#     #getting today's date/time
+#     post_create_date = datetime.now()
+#     #Retrieve user with matching email from session
+#     user_email = session["user_email"]
+#     user = crud.get_user_by_email(user_email)
+#     #Retrieve mood value and return mood type
+#     mood_from_db = crud.get_mood_type(mood)
+#     # Creating a new status post
+#     new_status_post = crud.create_status(user.user_id, status_description, post_create_date, mood_from_db.mood_id)
+
+#     db.session.add(new_status_post)
+#     db.session.commit()
+   
+#     flash('Your status has been posted!')
+#     #Might need to change this in the future so that when posting a new status
+#     #it stays on the page that the form is on.  This would be done through
+#     #Event listner, AJAX request, DOM manipulation, through front end javascript
+#     return redirect('/status_posts') 
+
+
+
 
 #creating a route for a user profile page
 @app.route('/profile')
@@ -112,6 +149,8 @@ def delete_status(status_id):
         flash("There was an error when trying to delete your status. Please try again")
         #I might need to use AJAX to fix these redirects and stay on page without reloading
     return redirect("/profile")
+
+
 
 #creating login page
 @app.route('/login')
