@@ -3,10 +3,14 @@
 
 {% block body %}
     {% for user in followed %}
+    <a href="/users/{{ user.user_id }}">
         <h2>{{ user.user_handle }}</h2>
+      </a>
+        
         {% for status in user.status_posts %}
-            <p>{{ status.status_description }}
-		   {{ status.post_create_date }}
+            <p>{{ status.mood.mood_type }}
+               {{ status.status_description }}
+		       {{ status.post_create_date }}
             </p>
         {% endfor %}
     {% endfor %}
