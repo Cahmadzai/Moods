@@ -17,6 +17,14 @@
         "user_handle": "Bob29",
         "email": "bob29@gmail.com",
         "password": "bobismyname"
+      },
+
+      {
+        "user_id": "4",
+        "user_handle": "Joey19",
+        "email": "Joey19@gmail.com",
+        "password": "joefosho"
       }
+
    
 ]
