@@ -18,15 +18,26 @@
   <button type="submit">Post</button>
 
 </form>
+
 {% for status_post in status_posts %}
+
+  <a href="/users/{{ status_post.user_id }}">
+    <h2>{{ status_post.user.user_handle }}</h2>
+  </a>
   <p>
-    {{ status_post.user.user_handle }}
     {{ status_post.mood.mood_type }}
-    {{ status_post }}
+    {{ status_post.status_description }}
+    {{ status_post.post_create_date }}
   </p>
 
 {% endfor %}
 {% endblock body %}
+
+
+
+
+
+
 
 
 
