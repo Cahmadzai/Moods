@@ -133,7 +133,15 @@ def post_a_status():
     #Might need to change this in the future so that when posting a new status
     #it stays on the page that the form is on.  This would be done through
     #Event listner, AJAX request, DOM manipulation, through front end javascript
-    return redirect('/status_posts')  
+    return redirect('/status_posts') 
+
+#create route for a user profile page
+@app.route("/users/<user_id>")
+def show_user_profile_page(user_id):
+    """Show details on a particular user.""" 
+    status_posts = crud.get_user_statuses(user_id)
+    return render_template('user_profile.html', status_posts=status_posts)
+
 
 #delete a status
 #int tells Flask to expect integer value for the status_id
