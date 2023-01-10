@@ -1,13 +1,18 @@
 {% extends 'base.html' %}
 {% block title %}Profile {% endblock %}
 
+
 {% block body %}
+    
 
     {% for status_post in status_posts %}
+    
+    <h2>{{ status_post.user.user_handle }}</h2>
       <li>
-        {{ status_post.user.user_handle }}
         {{ status_post.mood.mood_type }}
         {{ status_post }}
       </li>
     {% endfor %}
+
+    
 {% endblock body %}
