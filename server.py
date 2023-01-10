@@ -50,21 +50,50 @@ def all_following():
         for followed_user in followed_users:
             status_posts.append(followed_user.status_posts)
 
-        return render_template('all_following.html', followed=followed_users, status_posts=status_posts)
+        return render_template('all_following.html', followed=followed_users, status_posts=status_posts, user_handle=user.user_handle)
+
+#follow route
+@app.route('/follow', methods=['POST'])
+def follow():
+    """Follow a user"""
+    user_email = session["user_email"]
+    user = crud.get_user_by_email(user_email)
+    following_user_id = user.user_id
+
+    followed_user_handle = request.json.get['user_handle']
+    followed_user = crud.get_user_by_handle(followed_user_handle)
+    followed_user_id = followed_user.user_id
+
+    if crud.create_follow(followed_user_id, following_user_id):
+        flash(f'You are now following {user.user_handle}.')
+        return render_template('user_profile.html', status_posts=user.status_posts, user_handle=user.user_handle)
+        #return redirect('/following')
+        #also had no user_handle=user.user_handle
+    else:
+        flash('An error has occured.  Unable to follow user.')
+        return render_template('user_profile.html', status_posts=user.status_posts, user_handle=user.user_handle)
+
+        # return redirect('/following')
 
 
 @app.route('/unfollow', methods=['POST'])
 def unfollow():
     """Unfollow a user"""
-    #specifying key of the data I want to retrieve
-    followed_user_id = request.form['followed_user_id']
-    following_user_id = request.form['following_user_id']
-    #creating unfollow object
+    user_email = session["user_email"]
+    user = crud.get_user_by_email(user_email)
+    following_user_id = user.user_id
+
+    followed_user_handle = request.json.get['user_handle']
+    followed_user = crud.get_user_by_handle(followed_user_handle)
+    followed_user_id = followed_user.user_id
+
     if crud.create_unfollow(followed_user_id, following_user_id):
-        return redirect('/following')
+        return render_template('user_profile.html', status_posts=user.status_posts, user=user)
+        #return redirect('/following')
     else:
         flash('An error has occured.  Unable to unfollow user.')
-        return redirect('/following')
+        return render_template('user_profile.html', status_posts=user.status_posts, user=user)
+        #return redirect('/following')
 
 
 # #Route to post a status
@@ -143,6 +172,7 @@ def post_a_status():
 def show_user_profile_page(user_id):
     """Show details on a particular user.""" 
     status_posts = crud.get_user_statuses(user_id)
+
     return render_template('user_profile.html', status_posts=status_posts)
 
 
