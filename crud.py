@@ -50,6 +50,11 @@ def get_user_by_email(email):
 
     return User.query.filter(User.email == email).first()
 
+def get_user_by_handle(user_handle):
+    """Return a user by handle."""
+
+    return User.query.filter(User.user_handle == user_handle).first()
+
 def get_user_statuses(user_id):
     """Return statuses for one user on their profile page"""
     #double check this, might be adding time expiration in the future or date separation
