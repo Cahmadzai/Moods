@@ -24,10 +24,13 @@ def homepage():
 @app.route('/status_posts')
 def all_status_posts():
     """View all status_posts from all users."""
-
-    status_posts = crud.get_all_status_posts()
-
-    return render_template('all_status_posts.html', status_posts=status_posts)
+    #checks if user is logged in 
+    if "user_email" not in session:
+        flash("Please log in to view all status posts.")
+        return redirect("/login")
+    else:
+        status_posts = crud.get_all_status_posts()
+        return render_template('all_status_posts.html', status_posts=status_posts)
 
 # Route to view all followed users and their statuses
 @app.route('/following')
@@ -35,7 +38,7 @@ def all_following():
     """View all followed users and their statuses"""
     #checks if user is logged in 
     if "user_email" not in session:
-        flash("Please log in to view users you follow")
+        flash("Please log in to view users you follow.")
         return redirect("/login")
     else:
         user_email = session["user_email"]
@@ -60,7 +63,7 @@ def unfollow():
     if crud.create_unfollow(followed_user_id, following_user_id):
         return redirect('/following')
     else:
-        flash('An error has occured.  Unable to unfollow user')
+        flash('An error has occured.  Unable to unfollow user.')
         return redirect('/following')
 
 
@@ -100,7 +103,7 @@ def all_user_statuses():
     #if no user email == no one logged in - redirect to home
     #might not even need this? User can't get to profile page without logging in
     if "user_email" not in session:
-        flash("Please log in to view your profile")
+        flash("Please log in to view your profile.")
         return redirect("/login")
     else:
         user_email = session["user_email"]
