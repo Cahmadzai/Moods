@@ -15,7 +15,6 @@
     <input hidden="true" id="follow-user-handle" name="follow_user_handle" value= {{ user_handle }}>
     <button id="follow-button" class="btn btn-primary mt-2">Follow</button>
 </form>
-
 {% endif %}
 
 
@@ -28,7 +27,5 @@
         {{ status_post }}
       </li>
     {% endfor %}
-    <script src="/static/follow_button.js"></script>
-    <script src="/static/unfollow_button.js"></script>
     
 {% endblock body %}
