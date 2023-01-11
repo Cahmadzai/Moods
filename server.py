@@ -42,7 +42,9 @@ def show_user_profile_page(user_id):
     user_email = session["user_email"]
     following_user = crud.get_user_by_email(user_email)
     following_user_id = following_user.user_id
-    is_following = crud.get_follow(followed_user_id, following_user_id)
+    #gets follow and makes sure not equal to none
+    is_following = crud.get_follow(followed_user_id, following_user_id) != None
+    print(is_following)
     # user_email = session["user_email"]
 
     return render_template('user_profile.html', status_posts=status_posts, user_handle=user.user_handle, is_following=is_following)
