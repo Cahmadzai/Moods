@@ -83,32 +83,12 @@ def follow():
 
     if crud.create_follow(followed_user_id, following_user_id):
         flash(f'You are now following {followed_user.user_handle}.')
+        print(f'You are now following {followed_user.user_handle}.')
         return redirect('/following')
         
     else:
         flash('An error has occured.  Unable to follow user.')
         return redirect('/following') 
-
-    # return {
-    #     "success": True, 
-    #     "status": f"You are now following {user.user_handle}"}
-
-    #MELON_ORDERS.append{"melon_type": melon_type, "amount": amount})
-
-    # if followed_user:
-    #     followed_user_id = followed_user.user_id
-    #     follow = crud.create_follow(followed_user_id, following_user_id)
-    #     if follow:
-    #         db.session.add(follow)
-    #         db.session.commit()
-    #         return Jsonify({'status': 'Followed', 'user_followed': True}),
-
-    # else:
-    #     return Jsonify({'status': 'Bad request, user not found'})
-        
-
-    
- 
 
 
 @app.route('/unfollow', methods=['POST'])
@@ -118,45 +98,21 @@ def unfollow():
     user = crud.get_user_by_email(user_email)
     following_user_id = user.user_id
 
-    followed_user_handle = request.json.get['user_handle']
+    followed_user_handle = request.json.get('user_handle')
+    print(followed_user_handle)
     followed_user = crud.get_user_by_handle(followed_user_handle)
+    print(followed_user.user_handle)
     followed_user_id = followed_user.user_id
 
     if crud.create_unfollow(followed_user_id, following_user_id):
+        
+        flash(f'You have unfollowed {followed_user.user_handle}.')
+        print(f'You have unfollowed {followed_user.user_handle}.')
         return redirect('/following')
         
     else:
         flash('An error has occured.  Unable to unfollow user.')
         return redirect('/following')
-
-
-# #Route to post a status
-# @app.route('/profile', methods =['POST'])
-# def post_a_status():
-#     # Using request.form because mood and description must be present to post
-#     # Retrieving the 'mood' and 'description' form data
-#     mood = request.form["mood"] 
-#     status_description = request.form["description"]
-#     #getting today's date/time
-#     post_create_date = datetime.now()
-#     #Retrieve user with matching email from session
-#     user_email = session["user_email"]
-#     user = crud.get_user_by_email(user_email)
-#     #Retrieve mood value and return mood type
-#     mood_from_db = crud.get_mood_type(mood)
-#     # Creating a new status post
-#     new_status_post = crud.create_status(user.user_id, status_description, post_create_date, mood_from_db.mood_id)
-
-#     db.session.add(new_status_post)
-#     db.session.commit()
-   
-#     flash('Your status has been posted!')
-#     #Might need to change this in the future so that when posting a new status
-#     #it stays on the page that the form is on.  This would be done through
-#     #Event listner, AJAX request, DOM manipulation, through front end javascript
-#     return redirect('/status_posts') 
-
-
 
 
 #creating a route for a user profile page
