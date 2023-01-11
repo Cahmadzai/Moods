@@ -11,7 +11,7 @@ def create_user(user_handle, email, password):
 
 #create follow
 def create_follow(followed_user_id, following_user_id):
-    """Create and return a follow object."""
+    """Follow a user."""
 
     follow = Follow(followed_user_id=followed_user_id, following_user_id=following_user_id)
 
@@ -34,7 +34,7 @@ def create_unfollow(followed_user_id, following_user_id):
 #get follow
 def get_follow(followed_user_id, following_user_id):
     """Get a follow."""
-    follow = Follow.query.filter_by(Follow.followed_user_id == followed_user_id, Follow.following_user_id == following_user_id).first()
+    follow = Follow.query.filter(followed_user_id==followed_user_id, following_user_id==following_user_id).first()
     
     return follow
 
