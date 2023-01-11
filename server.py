@@ -40,7 +40,10 @@ def show_user_profile_page(user_id):
     user = crud.get_user_by_id(user_id)
     followed_user_id = user_id
     user_email = session["user_email"]
+
     following_user = crud.get_user_by_email(user_email)
+    if user.user_id == following_user.user_id:
+        return redirect('/profile')
     following_user_id = following_user.user_id
     #gets follow and makes sure not equal to none
     is_following = crud.get_follow(followed_user_id, following_user_id) != None
@@ -105,7 +108,7 @@ def unfollow():
     followed_user_id = followed_user.user_id
 
     if crud.create_unfollow(followed_user_id, following_user_id):
-        
+
         flash(f'You have unfollowed {followed_user.user_handle}.')
         print(f'You have unfollowed {followed_user.user_handle}.')
         return redirect('/following')
