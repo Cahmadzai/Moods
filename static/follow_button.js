@@ -1,16 +1,16 @@
 
-const followButton = document.getElementById('follow-button');
+const followButton = document.querySelector('#follow-button');
+console.log(followButton);
 
-followButton.addEventListener('click', function userClick() {
-    if(followButton.innerText === 'Follow') {
-        followButton.innerText = 'Unfollow';
-    } else {
-        followButton.innerText = 'Follow';
-    }
+followButton.addEventListener('click', function userClick(evt) {
+    evt.preventDefault();
+    console.log("Button is clicked");
+    
 
     const formInputs = { 
-        user_handle: document.querySelector('#element').value   
+        user_handle: document.querySelector('#user-handle').value   
     };
+    console.log(formInputs)
 
     fetch('/follow', {
         method: 'POST',
@@ -19,10 +19,21 @@ followButton.addEventListener('click', function userClick() {
             'Content-Type': 'application/json',
         },
     })
-    
+
+        })
         .then((response) => response.json())
-        .then((responseJson) => {
-            alert(responseJson.status);
-        });      
-});
+        .then((results) => {
+            alert(results.status);
+
+            // if(followButton.innerText === 'Follow') {
+            //     followButton.innerText = 'Unfollow';
+            // } else {
+            //     followButton.innerText = 'Follow';
+            // }
+    });
+          
+
+
+    
+
 
