@@ -41,6 +41,8 @@ def create_unfollow(followed_user_id, following_user_id):
 #get follow
 def get_follow(followed_user_id, following_user_id):
     """Get a follow."""
+    #using SQLAlchemy to  execute query database.
+    #filtering results by followed_user_id and following_user_id columns
     follow = Follow.query.filter(Follow.followed_user_id == followed_user_id, Follow.following_user_id == following_user_id).first()
     
     return follow
