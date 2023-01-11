@@ -15,18 +15,29 @@ def create_follow(followed_user_id, following_user_id):
 
     follow = Follow(followed_user_id=followed_user_id, following_user_id=following_user_id)
 
-    return follow 
+    if follow:
+        db.session.add(follow)
+        db.session.commit()
+        return follow
 
 #create unfollow
 def create_unfollow(followed_user_id, following_user_id):
     """Unfollow a user."""
-    follow = Follow.query.filter_by(Follow.followed_user_id == followed_user_id, Follow.following_user_id == following_user_id).first()
+    follow = get_follow(followed_user_id, following_user_id)
     if follow:
         db.session.delete(follow)
         db.session.commit()
         return True
     else:
         return False
+
+#get follow
+def get_follow(followed_user_id, following_user_id):
+    """Get a follow."""
+    follow = Follow.query.filter_by(Follow.followed_user_id == followed_user_id, Follow.following_user_id == following_user_id).first()
+    
+    return follow
+
    
 def get_users_followed(user_id):
     """Return followed users and their statuses"""
@@ -49,6 +60,12 @@ def get_user_by_email(email):
     """Return a user by email."""
 
     return User.query.filter(User.email == email).first()
+
+def get_user_by_id(user_id):
+    """Return a user by id."""
+
+    return User.query.filter(User.user_id == user_id).first()
+
 
 def get_user_by_handle(user_handle):
     """Return a user by handle."""
