@@ -8,7 +8,7 @@ followButton.addEventListener('click', function userClick(evt) {
     
 
     const formInputs = { 
-        user_handle: document.querySelector('#user-handle').value   
+        user_handle: document.querySelector('#follow-user-handle').value   
     };
     console.log(formInputs)
 
@@ -25,15 +25,7 @@ followButton.addEventListener('click', function userClick(evt) {
         .then((results) => {
             alert(results.status);
 
-            // if(followButton.innerText === 'Follow') {
-            //     followButton.innerText = 'Unfollow';
-            // } else {
-            //     followButton.innerText = 'Follow';
-            // }
     });
-          
-
-
     
 
 
