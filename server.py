@@ -32,6 +32,21 @@ def all_status_posts():
         status_posts = crud.get_all_status_posts()
         return render_template('all_status_posts.html', status_posts=status_posts)
 
+#create route for a user profile page
+@app.route("/users/<user_id>")
+def show_user_profile_page(user_id):
+    """Show details on a particular user.""" 
+    status_posts = crud.get_user_statuses(user_id)
+    user = crud.get_user_by_id(user_id)
+    followed_user_id = user_id
+    user_email = session["user_email"]
+    following_user = crud.get_user_by_email(user_email)
+    following_user_id = following_user.user_id
+    is_following = crud.get_follow(followed_user_id, following_user_id)
+    # user_email = session["user_email"]
+
+    return render_template('user_profile.html', status_posts=status_posts, user_handle=user.user_handle, is_following=is_following)
+
 # Route to view all followed users and their statuses
 @app.route('/following')
 def all_following():
@@ -60,20 +75,38 @@ def follow():
     user = crud.get_user_by_email(user_email)
     following_user_id = user.user_id
 
-    followed_user_handle = request.json.get['user_handle']
+    followed_user_handle = request.json.get('user_handle')
     followed_user = crud.get_user_by_handle(followed_user_handle)
     followed_user_id = followed_user.user_id
 
     if crud.create_follow(followed_user_id, following_user_id):
-        flash(f'You are now following {user.user_handle}.')
-        return render_template('user_profile.html', status_posts=user.status_posts, user_handle=user.user_handle)
-        #return redirect('/following')
-        #also had no user_handle=user.user_handle
+        flash(f'You are now following {followed_user.user_handle}.')
+        return redirect('/following')
+        
     else:
         flash('An error has occured.  Unable to follow user.')
-        return render_template('user_profile.html', status_posts=user.status_posts, user_handle=user.user_handle)
+        return redirect('/following') 
 
-        # return redirect('/following')
+    # return {
+    #     "success": True, 
+    #     "status": f"You are now following {user.user_handle}"}
+
+    #MELON_ORDERS.append{"melon_type": melon_type, "amount": amount})
+
+    # if followed_user:
+    #     followed_user_id = followed_user.user_id
+    #     follow = crud.create_follow(followed_user_id, following_user_id)
+    #     if follow:
+    #         db.session.add(follow)
+    #         db.session.commit()
+    #         return Jsonify({'status': 'Followed', 'user_followed': True}),
+
+    # else:
+    #     return Jsonify({'status': 'Bad request, user not found'})
+        
+
+    
+ 
 
 
 @app.route('/unfollow', methods=['POST'])
@@ -88,12 +121,11 @@ def unfollow():
     followed_user_id = followed_user.user_id
 
     if crud.create_unfollow(followed_user_id, following_user_id):
-        return render_template('user_profile.html', status_posts=user.status_posts, user=user)
-        #return redirect('/following')
+        return redirect('/following')
+        
     else:
         flash('An error has occured.  Unable to unfollow user.')
-        return render_template('user_profile.html', status_posts=user.status_posts, user=user)
-        #return redirect('/following')
+        return redirect('/following')
 
 
 # #Route to post a status
@@ -166,14 +198,6 @@ def post_a_status():
     #it stays on the page that the form is on.  This would be done through
     #Event listner, AJAX request, DOM manipulation, through front end javascript
     return redirect('/status_posts') 
-
-#create route for a user profile page
-@app.route("/users/<user_id>")
-def show_user_profile_page(user_id):
-    """Show details on a particular user.""" 
-    status_posts = crud.get_user_statuses(user_id)
-
-    return render_template('user_profile.html', status_posts=status_posts)
 
 
 #delete a status
