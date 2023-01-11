@@ -4,9 +4,14 @@
 
 {% block body %}
 
-<form id="form" method="post" action="/follow">
-    <input hidden="true" id="user-handle" name="user_handle" value= {{ user_handle }}>
+<form id="follow-form" method="post" action="/follow">
+    <input hidden="true" id="follow-user-handle" name="follow_user_handle" value= {{ user_handle }}>
     <button id="follow-button" class="btn btn-primary mt-2">Follow</button>
+</form>
+
+<form id="unfollow-form" method="post" action="/unfollow">
+    <input hidden="true" id="unfollow-user-handle" name="unfollow_user_handle" value= {{ user_handle }}>
+    <button id="unfollow-button" class="btn btn-primary mt-2">Unfollow</button>
 </form>
 
 
@@ -19,5 +24,6 @@
       </li>
     {% endfor %}
     <script src="/static/follow_button.js"></script>
+    <script src="/static/unfollow_button.js"></script>
     
 {% endblock body %}
