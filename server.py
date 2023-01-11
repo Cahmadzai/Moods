@@ -80,20 +80,25 @@ def follow():
     user = crud.get_user_by_email(user_email)
     following_user_id = user.user_id
 
-    followed_user_handle = request.json.get('user_handle')
+    followed_user_handle = request.form.get('follow_user_handle')
     followed_user = crud.get_user_by_handle(followed_user_handle)
     followed_user_id = followed_user.user_id
+    is_following = crud.get_follow(followed_user_id, following_user_id) != None
 
-    if crud.create_follow(followed_user_id, following_user_id):
+    if is_following:
+        flash(f'You are already following {followed_user.user_handle}.')
+        return redirect('/following')
+    
+    elif crud.create_follow(followed_user_id, following_user_id):
         flash(f'You are now following {followed_user.user_handle}.')
         print(f'You are now following {followed_user.user_handle}.')
         return redirect('/following')
-        
+         
     else:
         flash('An error has occured.  Unable to follow user.')
         return redirect('/following') 
 
-
+#unfollow route
 @app.route('/unfollow', methods=['POST'])
 def unfollow():
     """Unfollow a user"""
@@ -101,7 +106,7 @@ def unfollow():
     user = crud.get_user_by_email(user_email)
     following_user_id = user.user_id
 
-    followed_user_handle = request.json.get('user_handle')
+    followed_user_handle = request.form.get('unfollow_user_handle')
     print(followed_user_handle)
     followed_user = crud.get_user_by_handle(followed_user_handle)
     print(followed_user.user_handle)
