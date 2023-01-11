@@ -24,6 +24,7 @@ def create_follow(followed_user_id, following_user_id):
 def create_unfollow(followed_user_id, following_user_id):
     """Unfollow a user."""
     follow = get_follow(followed_user_id, following_user_id)
+    print(f'You have unfollowed {follow}.')
     if follow:
         db.session.delete(follow)
         db.session.commit()
@@ -31,14 +32,19 @@ def create_unfollow(followed_user_id, following_user_id):
     else:
         return False
 
+    # follow.is_active = False
+    #     db.session.commit()
+    #     return True
+    # else:
+    #     return False
+
 #get follow
 def get_follow(followed_user_id, following_user_id):
     """Get a follow."""
-    follow = Follow.query.filter(followed_user_id==followed_user_id, following_user_id==following_user_id).first()
+    follow = Follow.query.filter(Follow.followed_user_id == followed_user_id, Follow.following_user_id == following_user_id).first()
     
     return follow
-
-   
+ 
 def get_users_followed(user_id):
     """Return followed users and their statuses"""
     # follows represents users that user_id is following
