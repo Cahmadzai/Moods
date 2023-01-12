@@ -1,5 +1,5 @@
 """CRUD operations."""
-from model import db, User, Status, Mood, Follow, connect_to_db
+from model import db, User, Status, Mood,Comment, Follow,  connect_to_db
 from datetime import datetime
 
 def create_user(user_handle, email, password):
@@ -92,6 +92,12 @@ def create_status(user_id, status_description, post_create_date, mood_id):
 
     return status_post
 
+def create_comment(user_id, status_id, comment_description,post_create_date):
+    """Create and return a new comment"""
+    comment = Comment(user_id=user_id, status_id=status_id, comment_description=comment_description, post_create_date=post_create_date)
+
+    return comment
+
 def delete_status(status_id):
     """Delete a status by id."""
     status = Status.query.filter(Status.status_id == status_id).first()
@@ -132,7 +138,7 @@ def get_mood_type(mood_type):
 if __name__ == '__main__':
     from server import app
     connect_to_db(app)
-    # db.drop_all()
+    #db.drop_all()
     # db.create_all()
 
     # user= create_user(user_handle='user123', email='test@gmail.com', password='test1234')
