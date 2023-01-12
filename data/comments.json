@@ -1,0 +1,18 @@
+[
+    {
+      "user_handle": "HelloWorld123",
+      "comment_description": "Great post!",
+      "status_id": "1"
+    },
+    {
+      "user_handle": "Christina34",
+      "comment_description": "Awesome!",
+      "status_id": "2"
+    },
+    {
+      "user_handle": "HelloWorld123",
+      "comment_description": "I'm feeling great!",
+      "status_id": "3"
+    }
+   
+]
