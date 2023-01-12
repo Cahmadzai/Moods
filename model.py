@@ -17,6 +17,7 @@ class User(db.Model):
     password = db.Column(db.String)
 
     status_posts = db.relationship("Status", back_populates="user")
+    comments = db.relationship("Comment", back_populates="user")
 
     def __repr__(self):
         return f'<User user_id={self.user_id} user_handle={self.user_handle} email={self.email}>'
@@ -55,9 +56,31 @@ class Status(db.Model):
 
     user = db.relationship("User", back_populates="status_posts")
     mood = db.relationship("Mood", back_populates="status_posts")
+    comments = db.relationship("Comment", back_populates="status_posts")
 
     def __repr__(self):
         return f'<Status status_id={self.status_id} status_description={self.status_description} post_create_date{self.post_create_date}>'
+
+
+class Comment(db.Model):
+    """A comment to a status post"""
+
+    __tablename__ = "comments"
+    comment_id = db.Column(db.Integer,
+                        autoincrement=True,
+                        primary_key=True)
+    comment_description = db.Column(db.String(255))
+    post_create_date = db.Column(db.DateTime)
+    user_id = db.Column(db.Integer, db.ForeignKey("users.user_id"))
+    status_id = db.Column(db.Integer, db.ForeignKey("status_posts.status_id"))
+    
+    user = db.relationship("User", back_populates="comments")
+    status_posts = db.relationship("Status", back_populates="comments")
+
+    def __repr__(self):
+        """Show info about comment"""
+        return f'<Comment comment_id={self.comment_id} comment_description={self.comment_description} post_create_date{self.post_create_date}>'
+
 
 class Mood(db.Model):
     """A mood type."""
