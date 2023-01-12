@@ -88,6 +88,33 @@ model.db.session.add_all(status_posts_in_db)
 model.db.session.commit()
 
 
+#Load comments data from JSON file
+with open('data/comments.json') as f:
+    comments_data = json.loads(f.read())
+
+# Create comments, store them in list 
+comments_in_db = []
+for comments in comments_data:
+    comment_description = comments['comment_description']
+    post_create_date = datetime.now()
+    #I think I can use this here as well
+    #does it make sence to have this for status id for testing purposes
+    random_user_id = choice(users_in_db).user_id
+    random_status_id = choice(status_posts_in_db).status_id
+
+    db_comment = crud.create_comment(random_user_id, random_status_id, comment_description, post_create_date)
+    comments_in_db.append(db_comment)
+
+model.db.session.add_all(comments_in_db)
+model.db.session.commit()
+
+
+
+
+
+
+
+
 
 
 
