@@ -38,6 +38,19 @@ def create_unfollow(followed_user_id, following_user_id):
     # else:
     #     return False
 
+def create_status(user_id, status_description, post_create_date, mood_id):
+    """Create and return a new mood status post."""
+    status_post = Status(user_id=user_id, status_description=status_description, 
+    post_create_date=post_create_date, mood_id=mood_id) 
+
+    return status_post
+
+def create_comment(user_id, status_id, comment_description,post_create_date):
+    """Create and return a new comment"""
+    comment = Comment(user_id=user_id, status_id=status_id, comment_description=comment_description, post_create_date=post_create_date)
+
+    return comment
+
 #get follow
 def get_follow(followed_user_id, following_user_id):
     """Get a follow."""
@@ -74,6 +87,11 @@ def get_user_by_id(user_id):
 
     return User.query.filter(User.user_id == user_id).first()
 
+def get_status_by_id(status_id):
+    """Return a status by id."""
+
+    return Status.query.filter(Status.status_id == status_id).first()
+
 
 def get_user_by_handle(user_handle):
     """Return a user by handle."""
@@ -85,28 +103,13 @@ def get_user_statuses(user_id):
     #double check this, might be adding time expiration in the future or date separation
     return Status.query.filter(Status.user_id == user_id).all()
 
-def create_status(user_id, status_description, post_create_date, mood_id):
-    """Create and return a new mood status post."""
-    status_post = Status(user_id=user_id, status_description=status_description, 
-    post_create_date=post_create_date, mood_id=mood_id) 
 
-    return status_post
+def get_comments(status_id):
+    """Return all comments for each status post by different users"""
 
-def create_comment(user_id, status_id, comment_description,post_create_date):
-    """Create and return a new comment"""
-    comment = Comment(user_id=user_id, status_id=status_id, comment_description=comment_description, post_create_date=post_create_date)
+    comments = Comment.query.filter(Comment.status_id == status_id ).all()
 
-    return comment
-
-def delete_status(status_id):
-    """Delete a status by id."""
-    status = Status.query.filter(Status.status_id == status_id).first()
-    if status:
-        db.session.delete(status)
-        db.session.commit()
-        return True
-    else:
-        return False
+    return comments
 
 def get_all_status_posts():
     """Return all status posts."""
@@ -121,6 +124,19 @@ def create_mood(mood_type):
 def get_mood_type(mood_type):
     """Returns the mood for a given mood type"""
     return Mood.query.filter(Mood.mood_type == mood_type).first()
+
+
+def delete_status(status_id):
+    """Delete a status by id."""
+    status = Status.query.filter(Status.status_id == status_id).first()
+    if status:
+        db.session.delete(status)
+        db.session.commit()
+        return True
+    else:
+        return False
+
+
 
 
 
