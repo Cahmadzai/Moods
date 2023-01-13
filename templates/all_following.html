@@ -12,7 +12,27 @@
                {{ status.status_description }}
 		       {{ status.post_create_date }}
             </p>
+
+        {% for comment in status.comments %}
+        <p>
+          {{ comment.comment_description }}
+          {{ comment.post_create_date }}
+         
+        </p>
+  
         {% endfor %}
+        <h3>Post a new comment</h3>
+<form id="comment-form" method="post" action="/post_a_comment">
+  <input hidden="true" id="status-id" name="status-id" value={{ status.status_id }}>
+  <label for="comment-description">Description:</label>
+  <input type="text" id="comment-description" name="comment-description">
+
+  <button id="comment-button" class="btn btn-primary mt-2">Post</button>
+
+</form>
+
+        {% endfor %}
+
     {% endfor %}
     {% if not followed %}
         <p>Currently not following any users</p>
