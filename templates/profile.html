@@ -30,6 +30,16 @@
       <input type="submit" value="Delete">
     </form>
   </li>
+
+  {% for comment in status_post.comments %}
+  <p>
+    {{ comment.comment_description }}
+    {{ comment.post_create_date }}
+   
+  </p>
+
+  {% endfor %}
+  
 {% endfor %}
 </ul>
 </div>
