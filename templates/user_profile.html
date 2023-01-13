@@ -26,6 +26,15 @@
         {{ status_post.mood.mood_type }}
         {{ status_post }}
       </li>
-    {% endfor %}
+
+      {% for comment in status_post.comments %}
+        <p>
+          {{ comment.comment_description }}
+          {{ comment.post_create_date }}
+         
+        </p>
+
     
+    {% endfor %}
+    {% endfor %}
 {% endblock body %}
