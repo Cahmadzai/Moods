@@ -136,6 +136,17 @@ def delete_status(status_id):
     else:
         return False
 
+def delete_comment(comment_id):
+    """Delete a comment by id."""
+    comment = Comment.query.filter(Comment.comment_id == comment_id).first()
+    if comment:
+        db.session.delete(comment)
+        db.session.commit()
+        return True
+    else:
+        return False
+
+
 
 
 
