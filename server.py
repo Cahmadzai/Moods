@@ -203,6 +203,15 @@ def delete_status(status_id):
         #I might need to use AJAX to fix these redirects and stay on page without reloading
     return redirect("/profile")
 
+@app.route('/delete-comment/<int:comment_id>', methods=['POST'])
+def delete_comment(comment_id):
+    """Delete a comment by id"""
+    if crud.delete_comment(comment_id):
+        flash("Comment deleted.")
+    else:
+        flash("There was an error when trying to delete your comment. Please try again")
+    return redirect("/status_posts")
+
 
 
 #creating login page
