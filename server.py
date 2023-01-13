@@ -166,6 +166,28 @@ def post_a_status():
     return redirect('/status_posts') 
 
 
+#Route to post a comment
+@app.route('/post_a_comment', methods =['POST'])
+def post_a_comment():
+    #change to request.form.get
+    comment_description = request.form["comment-description"]
+    status_id = request.form["status-id"]
+    post_create_date = datetime.now()
+   
+    user_email = session["user_email"]
+    user = crud.get_user_by_email(user_email)
+    
+    new_comment = crud.create_comment(user.user_id, status_id, comment_description,post_create_date)
+
+    db.session.add(new_comment)
+    db.session.commit()
+
+    flash('Your comment has been posted!')
+    return redirect ('/status_posts')
+
+
+
+
 #delete a status
 #int tells Flask to expect integer value for the status_id
 #if just use <status_id> would treat URL parameter as string
