@@ -11,7 +11,9 @@
   <option value="sad">Sad</option>
 </select>
   <label for="status_description">Description:</label>
-  <input type="text" name="description" id="status_description">
+  <input type="text" name="description" id="status_description"
+  onkeyup="countChar(event)" maxlength="255" />
+  <span class="help-block">Please keep status post length under 255 characters.</span>
   <br>
 
   <button type="submit">Post</button>

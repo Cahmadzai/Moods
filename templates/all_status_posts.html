@@ -12,7 +12,9 @@
   <option value="sad">Sad</option>
 </select>
   <label for="status_description">Description:</label>
-  <input type="text" name="description" id="status_description">
+  <input type="text" name="description" id="status_description"
+  onkeyup="countChar(event)" maxlength="255" />
+  <span class="help-block">Please keep status post length under 255 characters.</span>
   <br>
 
   <button type="submit">Post</button>
@@ -43,17 +45,23 @@
     </form>
 
   </p>
-
   {% endfor %}
+<div> 
 <h3>Post a new comment</h3>
+<div class="form-group">
 <form id="comment-form" method="post" action="/post_a_comment">
   <input hidden="true" id="status-id" name="status-id" value={{ status_post.status_id }}>
   <label for="comment-description">Description:</label>
-  <input type="text" id="comment-description" name="comment-description">
+  <input type="text" id="comment-description" name="comment-description"
+  onkeyup="countChar(event)" maxlength="255" />
+  <span class="help-block">Please keep comment length under 255 characters.</span>
+</div>
+
 
   <button id="comment-button" class="btn btn-primary mt-2">Post</button>
 
 </form>
+</div>
 
 
 {% endfor %}

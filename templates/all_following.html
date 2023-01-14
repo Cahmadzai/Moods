@@ -30,8 +30,11 @@
 <form id="comment-form" method="post" action="/post_a_comment">
   <input hidden="true" id="status-id" name="status-id" value={{ status.status_id }}>
   <label for="comment-description">Description:</label>
-  <input type="text" id="comment-description" name="comment-description">
+  <input type="text" id="comment-description" name="comment-description"
+  onkeyup="countChar(event)" maxlength="255" />
+  <span class="help-block">Please keep comment length under 255 characters.</span>
 
+  
   <button id="comment-button" class="btn btn-primary mt-2">Post</button>
 
 </form>
