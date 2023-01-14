@@ -22,7 +22,18 @@
 <div class=page>
 <h2>Your statuses</h2>
 <ul class="statuses">
+{% if status_posts |length == 0 %}
+  <p>Currently no status posts</p>
+{% else %}
+  {% for status_post in status_posts %}
+  
+{% endfor %}
+{% endif %}
+
 {% for status_post in status_posts %}
+  {% if not status_post %}
+    <p>Currently no status posts</p>
+  {% endif %}
   <li>
     {{ status_post.user.user_handle }}
     {{ status_post.mood.mood_type }}
@@ -32,6 +43,7 @@
       <input type="submit" value="Delete">
     </form>
   </li>
+
 
   {% for comment in status_post.comments %}
   <p>
@@ -43,6 +55,7 @@
   {% endfor %}
   
 {% endfor %}
+
 </ul>
 </div>
 {% endblock body %}
