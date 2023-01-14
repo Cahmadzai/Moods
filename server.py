@@ -212,7 +212,11 @@ def delete_comment(comment_id):
         flash("There was an error when trying to delete your comment. Please try again")
     return redirect("/status_posts")
 
-
+#creating landing page
+@app.route('/landing_page')
+def landing_page():
+    """A user starts on a landing page"""
+    return render_template('landing_page.html')
 
 #creating login page
 @app.route('/login')
