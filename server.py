@@ -19,6 +19,24 @@ def homepage():
 
     return render_template('homepage.html')
 
+
+@app.route('/search_status_posts', methods=['GET'])
+def search_status_posts():
+    user_handle = request.args.get('user_handle')
+    if not user_handle:
+        flash('Please enter a user handle')
+        return redirect('/status_posts')
+    users = crud.get_users_by_handle(user_handle)
+    if not users:
+        flash('No user found with this handle')
+        return redirect('/status_posts')
+    status_posts = []
+    for user in users:
+        posts = crud.get_user_statuses(user.user_id)
+        status_posts.extend(posts)
+    return render_template('all_status_posts.html', status_posts=status_posts)
+
+
 # Route to get all status_posts
 # Calling function from crud to get all status posts
 @app.route('/status_posts')
