@@ -1,6 +1,7 @@
 """CRUD operations."""
 from model import db, User, Status, Mood,Comment, Follow,  connect_to_db
 from datetime import datetime
+from sqlalchemy import func
 
 def create_user(user_handle, email, password):
     """Create and return a new user."""
@@ -101,8 +102,9 @@ def get_user_by_handle(user_handle):
 
 def get_users_by_handle(user_handle):
     """Return a list of users by handle."""
-
-    return User.query.filter(User.user_handle.contains(user_handle)).all()
+    #using func.lower from sqlalchemy to make search case insensitive
+    #changes user handle stored in database by making it lower case and compares to search
+    return User.query.filter(func.lower(User.user_handle).contains(user_handle.lower())).all()
 
 def get_user_statuses(user_id):
     """Return statuses for one user on their profile page"""
