@@ -9,6 +9,11 @@ def create_user(user_handle, email, password):
 
     return user
 
+def get_user_by_handle(user_handle):
+    """Return user by handle"""
+    return User.query.filter_by(user_handle=user_handle).first()
+
+
 #create follow
 def create_follow(followed_user_id, following_user_id):
     """Follow a user."""
@@ -97,6 +102,11 @@ def get_user_by_handle(user_handle):
     """Return a user by handle."""
 
     return User.query.filter(User.user_handle == user_handle).first()
+
+def get_users_by_handle(user_handle):
+    """Return a list of users by handle."""
+
+    return User.query.filter(User.user_handle.contains(user_handle))
 
 def get_user_statuses(user_id):
     """Return statuses for one user on their profile page"""
