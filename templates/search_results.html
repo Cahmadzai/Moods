@@ -1,0 +1,79 @@
+
+
+{% extends 'base.html' %}
+{% block title %}All Status Posts{% endblock %}
+
+<h3>Search Results</h3>
+
+
+    
+{% block body %}
+ 
+<ul>
+<a href="/status_posts">Back</a>
+ 
+</ul>
+
+
+
+
+
+
+
+<form method="GET" action="/search_status_posts">
+  <label for="user_handle">Search by user handle:</label>
+  <input type="text" id="user_handle" name="user_handle">
+  <input type="submit" value="Search">
+</form>
+
+
+
+
+
+
+
+{% for status_post in status_posts %}
+
+  <a href="/users/{{ status_post.user_id }}">
+    <h2>{{ status_post.user.user_handle }}</h2>
+  </a>
+  <p>
+    {{ status_post.mood.mood_type }}
+    {{ status_post.status_description }}
+    {{ status_post.post_create_date }}
+
+  </p>
+
+  {% for comment in status_post.comments %}
+  <p>
+    {{ comment.comment_description }}
+    {{ comment.post_create_date }}
+   
+    <form action="{{ url_for('delete_comment',
+    comment_id=comment.comment_id) }}" method="post">
+      <input type="submit" value="Delete">
+    </form>
+
+  </p>
+  {% endfor %}
+<div> 
+<h3>Post a new comment</h3>
+<div class="form-group">
+<form id="comment-form" method="post" action="/post_a_comment">
+  <input hidden="true" id="status-id" name="status-id" value={{ status_post.status_id }}>
+  <label for="comment-description">Description:</label>
+  <input type="text" id="comment-description" name="comment-description"
+  onkeyup="countChar(event)" maxlength="255" />
+  <span class="help-block">Please keep comment length under 255 characters.</span>
+</div>
+
+
+  <button id="comment-button" class="btn btn-primary mt-2">Post</button>
+
+</form>
+</div>
+
+
+{% endfor %}
+
+{% endblock %}
