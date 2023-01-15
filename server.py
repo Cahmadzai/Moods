@@ -251,7 +251,7 @@ def login():
 def register_user():
     """Create a new user."""
 
-    user_handle = request.form.get("user_handle").lower()
+    user_handle = request.form.get("user_handle")
     email = request.form.get("email")
     password = request.form.get("password")
     print(user_handle)
