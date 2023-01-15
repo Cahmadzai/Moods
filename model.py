@@ -2,6 +2,7 @@
 from datetime import datetime
 from flask_sqlalchemy import SQLAlchemy
 
+
 db = SQLAlchemy()
 
 class User(db.Model):
@@ -73,7 +74,7 @@ class Comment(db.Model):
     post_create_date = db.Column(db.DateTime)
     user_id = db.Column(db.Integer, db.ForeignKey("users.user_id"))
     status_id = db.Column(db.Integer, db.ForeignKey("status_posts.status_id"))
-    
+
     user = db.relationship("User", back_populates="comments")
     status_posts = db.relationship("Status", back_populates="comments")
 
