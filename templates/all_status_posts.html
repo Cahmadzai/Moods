@@ -33,7 +33,7 @@
 
 
 
-{% for status_post in status_posts %}
+{% for status_post in status_posts|reverse %}
 
   <a href="/users/{{ status_post.user_id }}">
     <h2>{{ status_post.user.user_handle }}</h2>
@@ -47,8 +47,10 @@
 
   {% for comment in status_post.comments %}
   <p>
+    {{ comment.user.user_handle }}
     {{ comment.comment_description }}
     {{ comment.post_create_date }}
+    
    
     <form action="{{ url_for('delete_comment',
     comment_id=comment.comment_id) }}" method="post">
@@ -58,7 +60,7 @@
   </p>
   {% endfor %}
 <div> 
-<h3>Post a new comment</h3>
+<h3>Add a comment</h3>
 <div class="form-group">
 <form id="comment-form" method="post" action="/post_a_comment">
   <input hidden="true" id="status-id" name="status-id" value={{ status_post.status_id }}>

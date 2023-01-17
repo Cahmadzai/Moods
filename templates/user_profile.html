@@ -19,7 +19,7 @@
 
 
 
-    {% for status_post in status_posts %}
+    {% for status_post in status_posts|reverse %}
     
     <h2>{{ status_post.user.user_handle }}</h2>
       <li>
@@ -29,6 +29,7 @@
 
       {% for comment in status_post.comments %}
         <p>
+          {{ comment.user.user_handle }}
           {{ comment.comment_description }}
           {{ comment.post_create_date }}
          

@@ -25,12 +25,13 @@
 {% if status_posts |length == 0 %}
   <p>Currently no status posts</p>
 {% else %}
+
   {% for status_post in status_posts %}
   
 {% endfor %}
 {% endif %}
 
-{% for status_post in status_posts %}
+{% for status_post in status_posts|reverse %}
   {% if not status_post %}
     <p>Currently no status posts</p>
   {% endif %}
@@ -47,12 +48,37 @@
 
   {% for comment in status_post.comments %}
   <p>
+    {{ comment.user.user_handle }}
     {{ comment.comment_description }}
     {{ comment.post_create_date }}
    
   </p>
 
+  <form action="{{ url_for('delete_comment',
+    comment_id=comment.comment_id) }}" method="post">
+      <input type="submit" value="Delete">
+    </form>
+
+  </p>
   {% endfor %}
+<div> 
+<h3>Add a comment</h3>
+<div class="form-group">
+<form id="comment-form" method="post" action="/post_a_comment">
+  <input hidden="true" id="status-id" name="status-id" value={{ status_post.status_id }}>
+  <label for="comment-description">Description:</label>
+  <input type="text" id="comment-description" name="comment-description"
+  onkeyup="countChar(event)" maxlength="255" />
+  <span class="help-block">Please keep comment length under 255 characters.</span>
+</div>
+
+
+  <button id="comment-button" class="btn btn-primary mt-2">Post</button>
+
+</form>
+</div>
+
+ 
   
 {% endfor %}
 
