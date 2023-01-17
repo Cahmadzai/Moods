@@ -7,7 +7,7 @@
         <h2>{{ user.user_handle }}</h2>
       </a>
         
-        {% for status in user.status_posts %}
+        {% for status in user.status_posts|reverse %}
             <p>{{ status.mood.mood_type }}
                {{ status.status_description }}
 		       {{ status.post_create_date }}
@@ -15,6 +15,7 @@
 
         {% for comment in status.comments %}
         <p>
+          {{ comment.user.user_handle }}
           {{ comment.comment_description }}
           {{ comment.post_create_date }}
 
@@ -26,7 +27,7 @@
         </p>
   
         {% endfor %}
-        <h3>Post a new comment</h3>
+        <h3>Add a comment</h3>
 <form id="comment-form" method="post" action="/post_a_comment">
   <input hidden="true" id="status-id" name="status-id" value={{ status.status_id }}>
   <label for="comment-description">Description:</label>
@@ -34,7 +35,7 @@
   onkeyup="countChar(event)" maxlength="255" />
   <span class="help-block">Please keep comment length under 255 characters.</span>
 
-  
+
   <button id="comment-button" class="btn btn-primary mt-2">Post</button>
 
 </form>
