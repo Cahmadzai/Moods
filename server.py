@@ -157,6 +157,7 @@ def all_user_statuses():
         user_id = user.user_id
         status_posts = crud.get_user_statuses(user_id)
         return render_template('profile.html', status_posts=status_posts) 
+
 # Route to view all followed users and their statuses
 @app.route('/following')
 def all_following():
