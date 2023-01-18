@@ -7,17 +7,32 @@ from jinja2 import StrictUndefined
 from datetime import datetime
 
 
+
+
+
 #configuring the Flask instance.  Creating secret key to allow flash and session to work
 app = Flask(__name__)
 app.secret_key = "dev"
 #configuring jinja2
 app.jinja_env.undefined = StrictUndefined
 
+
+
+
 @app.route('/')
 def homepage():
     """View homepage."""
 
     return render_template('homepage.html')
+
+
+#creating landing page
+@app.route('/landing_page')
+def landing_page():
+    """A user starts on a landing page"""
+    
+    return render_template('landing_page.html')
+
 
 
 @app.route('/search_status_posts', methods=['GET'])
@@ -235,11 +250,7 @@ def delete_comment(comment_id):
         flash("There was an error when trying to delete your comment. Please try again")
     return redirect("/status_posts")
 
-#creating landing page
-@app.route('/landing_page')
-def landing_page():
-    """A user starts on a landing page"""
-    return render_template('landing_page.html')
+
 
 #creating login page
 @app.route('/login')
@@ -293,6 +304,9 @@ def process_login():
 def logout():
     session.clear()
     return redirect('/login')
+
+
+
 
 
 
