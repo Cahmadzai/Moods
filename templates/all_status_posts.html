@@ -5,12 +5,17 @@
 
 {% block body %}
 
+<div class="container-sm">
+  
+
 
 <form method="GET" action="/search_status_posts">
   <label for="user_handle">Search by user handle:</label>
   <input type="text" id="user_handle" name="user_handle">
   <input type="submit" value="Search">
 </form>
+
+
 
 <h2>Post a new status</h2>
 <form action="/profile" method="POST">
@@ -50,13 +55,13 @@
     {{ comment.user.user_handle }}
     {{ comment.comment_description }}
     {{ comment.post_create_date }}
-    
+  
    
     <form action="{{ url_for('delete_comment',
     comment_id=comment.comment_id) }}" method="post">
       <input type="submit" value="Delete">
     </form>
-
+  
   </p>
   {% endfor %}
 <div> 
@@ -78,6 +83,7 @@
 
 
 {% endfor %}
+</div>
 {% endblock body %}
 
 
