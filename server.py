@@ -5,6 +5,7 @@ from model import connect_to_db, db
 import crud
 from jinja2 import StrictUndefined
 from datetime import datetime
+import os
 
 
 
@@ -15,7 +16,7 @@ app = Flask(__name__)
 app.secret_key = "dev"
 #configuring jinja2
 app.jinja_env.undefined = StrictUndefined
-
+API_KEY = os.environ['X_RapidAPI_Key']
 
 
 
@@ -31,7 +32,7 @@ def homepage():
 def landing_page():
     """A user starts on a landing page"""
     
-    return render_template('landing_page.html')
+    return render_template('landing_page.html', API_KEY = API_KEY )
 
 #creating login page
 @app.route('/login')
