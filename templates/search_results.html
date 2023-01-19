@@ -8,11 +8,15 @@
 
     
 {% block body %}
- 
+<div class="container"> 
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
 <ul>
 <a href="/status_posts">Back</a>
  
 </ul>
+</nav>
+</div>
 
 
 
@@ -20,11 +24,6 @@
 
 
 
-<form method="GET" action="/search_status_posts">
-  <label for="user_handle">Search by user handle:</label>
-  <input type="text" id="user_handle" name="user_handle">
-  <input type="submit" value="Search">
-</form>
 
 
 
