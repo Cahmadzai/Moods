@@ -4,8 +4,10 @@
 
 
 {% block body %}
+<link href='https://fonts.googleapis.com/css?family=Poppins:400,500,600' rel='stylesheet'>
+<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
 
-
+<div class="whole-page-font">
 
 <link rel="stylesheet"
         href="/static/css/forms.css">
@@ -51,7 +53,7 @@
 
 <form action="/profile" method="POST">
   <label for="mood-select" class="mood-label">Choose your mood:</label>
-  
+
   <label class="visually-hidden" for="autoSizingSelect">Preference</label>
 <select name="mood" id="mood-select">
   <option value="happy">Happy</option>
@@ -110,6 +112,7 @@
   
   </p>
   {% endfor %}
+  
 <div> 
 <h3>Add a comment</h3>
 <div class="form-group">
@@ -131,7 +134,9 @@
 {% endfor %}
 </div>
 </div>
+</div>
 {% endblock body %}
+
 
 
 
