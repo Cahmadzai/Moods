@@ -5,6 +5,11 @@
 
 {% block body %}
 
+
+
+<link rel="stylesheet"
+        href="/static/css/forms.css">
+
 <div class="container"> 
 
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -22,41 +27,63 @@
 </nav>
 </div>
 
-  
+<br>
+<br> 
  
-  
 <div class="container">
 <form class="d-flex" method="GET" action="/search_status_posts">
   <label for="user_handle"></label>
-  <input class="form-control me-2" type="text" id="user_handle" name="user_handle" placeholder="Search by username" aria-label="Search">
-  <button class="btn btn-outline-success" type="submit">Search</button>
+  <input class="form-control me-2" type="text" id="user_handle" name="user_handle" placeholder="Search statuses by username..." aria-label="Search">
+  <button class="btn btn-outline-secondary" type="submit">Search</button>
 </form>
 </div>
 
+<br>
 
 
-<div class="container">
+
+
+<div class="status-form container">
+
+<header class='post-status-header' >
 <h4>Post a new status</h4>
+</header>
+
 <form action="/profile" method="POST">
-  <label for="mood-select">Choose your mood:</label>
+  <label for="mood-select" class="mood-label">Choose your mood:</label>
+  
+  <label class="visually-hidden" for="autoSizingSelect">Preference</label>
 <select name="mood" id="mood-select">
   <option value="happy">Happy</option>
   <option value="sad">Sad</option>
 </select>
-  <label for="status_description">Description:</label>
-  <input type="text" name="description" id="status_description"
-  onkeyup="countChar(event)" maxlength="255" />
+<br>
+
+
+<label for="status_description" class="description-label" >Description:</label>
+
+<div class="form-floating"> 
+  <textarea class="my-textarea" type="text" name="description" id="status_description" placeholder="Express your feelings..." onkeyup="countChar(event)" maxlength="255"></textarea>
+</div>
+
   <span class="help-block">Please keep status post length under 255 characters.</span>
   <br>
+  <br>
+  <button class="btn btn-primary" id='post-button' type="submit">Post</button>
 
-  <button type="submit">Post</button>
+  
 
 </form>
+</div>
 </div>
 
 
 
+<br>
+<br>
+
 <div class="container">
+  
 {% for status_post in status_posts|reverse %}
 
   <a href="/users/{{ status_post.user_id }}">
