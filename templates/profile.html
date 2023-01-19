@@ -4,6 +4,18 @@
 
 
 {% block body %}
+
+<link href='https://fonts.googleapis.com/css?family=Poppins:400,500,600' rel='stylesheet'>
+<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+
+<div class="whole-page-font">
+
+<link rel="stylesheet"
+        href="/static/css/forms.css">
+
+
+
+
 <div class="container"> 
 
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -20,26 +32,57 @@
 </ul>
 </nav>
 
+</div>
 
-<h1>Post a new status</h1>
-<form action="/profile" method="POST">
-  <label for="mood-select">Choose your mood:</label>
-<select name="mood" id="mood-select">
-  <option value="happy">Happy</option>
-  <option value="sad">Sad</option>
-</select>
-  <label for="status_description">Description:</label>
-  <input type="text" name="description" id="status_description"
-  onkeyup="countChar(event)" maxlength="255" />
-  <span class="help-block">Please keep status post length under 255 characters.</span>
+<br>
+<br>
+
+
+
+<div class="status-form container">
+
+  <header class='post-status-header' >
+  <h4>Post a new status</h4>
+  </header>
+  
+  <form action="/profile" method="POST">
+    <label for="mood-select" class="mood-label">Choose your mood:</label>
+  
+    <label class="visually-hidden" for="autoSizingSelect">Preference</label>
+  <select name="mood" id="mood-select">
+    <option value="happy">Happy</option>
+    <option value="sad">Sad</option>
+  </select>
   <br>
-
-  <button type="submit">Post</button>
-
+  
+  
+  <label for="status_description" class="description-label" >Description:</label>
+  
+  <div class="form-floating"> 
+    <textarea class="my-textarea" type="text" name="description" id="status_description" placeholder="Express your feelings..." onkeyup="countChar(event)" maxlength="255"></textarea>
+  </div>
+  
+    <span class="help-block">Please keep status post length under 255 characters.</span>
+    <br>
+    <br>
+    <button class="btn btn-primary" id='post-button' type="submit">Post</button>
+  
+  </form>
+  </div>
+  </div>
+  <br>
+  <br>
 </form>
-<div class=page>
-<h2>Your statuses</h2>
-<ul class="statuses">
+
+
+<div class="container">
+<div class="page">
+
+<header class='your-status-header' >
+    <h4>Your feelings</h4>
+</header>
+
+
 {% if status_posts |length == 0 %}
   <p>Currently no status posts</p>
 {% else %}
@@ -53,7 +96,7 @@
   {% if not status_post %}
     <p>Currently no status posts</p>
   {% endif %}
-  <li>
+  <p>
     {{ status_post.user.user_handle }}
     {{ status_post.mood.mood_type }}
     {{ status_post }}
@@ -61,7 +104,7 @@
     status_id=status_post.status_id) }}" method="post">
       <input type="submit" value="Delete">
     </form>
-  </li>
+  </p>
 
 
   {% for comment in status_post.comments %}
@@ -79,7 +122,7 @@
 
   </p>
   {% endfor %}
-<div> 
+
 <h3>Add a comment</h3>
 <div class="form-group">
 <form id="comment-form" method="post" action="/post_a_comment">
@@ -94,12 +137,14 @@
   <button id="comment-button" class="btn btn-primary mt-2">Post</button>
 
 </form>
-</div>
+
 
  
   
 {% endfor %}
 
-</ul>
+
+</div>
+</div>
 </div>
 {% endblock body %}
