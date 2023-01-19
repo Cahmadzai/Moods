@@ -5,19 +5,38 @@
 
 {% block body %}
 
-<div class="container-sm">
+<div class="container"> 
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <ul class="nav nav-tabs">
+    <li class="nav-item">
+      <a class="nav-link" href="/profile">My profile</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/following">Following</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link active" aria-current="page" href="/status_posts">All status posts</a>
+    </li>
+  </ul>
+</nav>
+</div>
+
   
-
-
-<form method="GET" action="/search_status_posts">
-  <label for="user_handle">Search by user handle:</label>
-  <input type="text" id="user_handle" name="user_handle">
-  <input type="submit" value="Search">
+ 
+  
+<div class="container">
+<form class="d-flex" method="GET" action="/search_status_posts">
+  <label for="user_handle"></label>
+  <input class="form-control me-2" type="text" id="user_handle" name="user_handle" placeholder="Search by username" aria-label="Search">
+  <button class="btn btn-outline-success" type="submit">Search</button>
 </form>
+</div>
 
 
 
-<h2>Post a new status</h2>
+<div class="container">
+<h4>Post a new status</h4>
 <form action="/profile" method="POST">
   <label for="mood-select">Choose your mood:</label>
 <select name="mood" id="mood-select">
@@ -33,11 +52,11 @@
   <button type="submit">Post</button>
 
 </form>
+</div>
 
 
 
-
-
+<div class="container">
 {% for status_post in status_posts|reverse %}
 
   <a href="/users/{{ status_post.user_id }}">
@@ -83,6 +102,7 @@
 
 
 {% endfor %}
+</div>
 </div>
 {% endblock body %}
 
