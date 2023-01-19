@@ -78,6 +78,9 @@ def get_users_followed(user_id):
 
     return followed_users
 
+def get_all_users():
+    """Return all users."""
+    return User.query.all()
 
 def get_user_by_email(email):
     """Return a user by email."""
