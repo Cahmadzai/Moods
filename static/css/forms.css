@@ -1,0 +1,78 @@
+
+
+/* Search Forms. */
+#user_handle {
+    font-size: 14px;
+    padding-left: .90rem;
+}
+
+/* Forms. */
+
+.status-form form {
+    background-color: rgb(248, 249, 250);
+    padding-left: .75rem;
+    padding-top: .75rem;
+    padding-bottom: .75rem;
+    height: 250px;
+    box-shadow: 5px 5px 10px rgb(224, 223, 223);
+    
+    
+}
+
+.post-status-header {
+    padding-left: .75rem;
+}
+
+.mood-label {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+#mood-select {
+    
+    padding: 10px;
+    width: 150px;
+}
+
+
+.description-label {
+    font-size: 16px;
+    font-weight: 600;
+    padding-top: 1rem;
+}
+
+
+#status_description::placeholder {
+    font-size: 14px;
+   
+}
+
+
+.help-block {
+    
+    font-size: 14px;
+    color: rgb(219, 110, 110)
+    
+ 
+}
+
+#post-button{
+    
+    width: 77px;
+    height: 38px;
+    position: relative;
+    bottom: 10px;
+    
+    
+}
+
+
+.my-textarea{
+    height: 80px;
+    width: 600px;
+}
+
+
+
+
+
