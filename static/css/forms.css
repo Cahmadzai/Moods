@@ -1,14 +1,20 @@
 
    
 /* Navigation bar. */
+
+  
 .navbar {
     margin-top: 3%;
+    
+    
 }
 
 .nav-item {
     
     padding-left: 4rem;
     font-family: Roboto;
+    
+    
 }
 
 
@@ -26,7 +32,7 @@
 /* Forms. */
 
 .status-form form {
-    background-color: rgb(248, 249, 250);
+    background-color: rgb(250, 250, 250);
     padding-top: .75rem;
     padding-bottom: .75rem;
     box-shadow: 5px 5px 10px rgb(224, 223, 223);
@@ -49,6 +55,7 @@
 #mood-select {
     
     padding: .3rem;
+    font-weight: 400;
     width: 150px;
     font-family: Roboto;
 }
@@ -64,7 +71,7 @@
     
 }
 
-/* status description input area. */
+/* status description box. */
 .form-floating{
     padding-left: .75rem; 
 }
@@ -73,7 +80,7 @@
 #status_description::placeholder {
     font-size: 14px;
     font-family: Roboto;
-    padding-left: .60rem;
+    padding-left: .50rem;
     
 }
 
@@ -109,16 +116,6 @@
     height: 80px;
     width: 600px;
     font-family: Roboto;
-}
-
-.one-status{
-    
-    border: 1px solid blueviolet;
-    background-color: rgb(248, 249, 250);
-    padding-top: .75rem;
-    padding-bottom: .75rem;
-    box-shadow: 5px 5px 10px rgb(224, 223, 223);
-    
 }
 
 
