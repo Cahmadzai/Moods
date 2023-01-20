@@ -2,12 +2,15 @@
 {% extends 'base.html' %}
 {% block title %}All Status Posts{% endblock %}
 
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 {% block body %}
 <link href='https://fonts.googleapis.com/css?family=Poppins:400,500,600' rel='stylesheet'>
 <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
 
-<div class="whole-page-font">
+<div class="container">
+  <div class="whole-page-font">
+
 
 <link rel="stylesheet"
         href="/static/css/forms.css">
@@ -15,8 +18,8 @@
 <link rel="stylesheet"
         href="/static/css/post.css">
 
-<div class="whole-page"> 
-<div class="container">
+
+
 
   <nav class="navbar navbar-light">
   <ul class="nav nav-tabs">
@@ -91,34 +94,67 @@
 <br>
 
 <div class="all-statuses container">
-
-  
+  <div class="float-start">
+   
 {% for status_post in status_posts|reverse %}
-<div class="one-status container">
+  
+  <div class="one-status container">
   
   
   <a href="/users/{{ status_post.user_id }}">
     <header class="user_handle_header">
   
-    <h2>{{ status_post.user.user_handle }}</h2>
+    <h3>{{ status_post.user.user_handle }}</h3>
   </header>
   </a>
 
-<div class="each-status-post">
-  <p>
-    {{ status_post.mood.mood_type }}
-    {{ status_post.status_description }}
+<div class="posted-status-text">
+  
+  <header class="is-feeling-mood">
+   <h4>...is feeling {{ status_post.mood.mood_type }}</h4>
+  </header>
+    <br>
+    <div class="post-create-date">
     {{ status_post.post_create_date }}
-
+    </div>
+    <br>
+    <p class="status-post-text">
+    {{ status_post.status_description }}
   </p>
+    
 </div>
+
+<div>
+  <header class="add-comment-header">
+  <h6>Add a comment:</h6>
+</header>
+
+
+  <div class="comment-form-floating">
+  <form id="comment-form" method="post" action="/post_a_comment">
+    <input hidden="true" id="status-id" name="status-id" value={{ status_post.status_id }}>
+    
+    <textarea class="my-comment-text-area" type="text" id="comment-description" name="comment-description"
+    onkeyup="countChar(event)" maxlength="255"></textarea>
+    <br>
+    <span class="comment-help-block">Please keep comment length under 255 characters.</span>
+  
+  </div>
+  
+  <button id="comment-button" class="btn btn-primary mt-2">Post</button>
+  
+  </form>
+  </div>
 
   <div class="comments">
   {% for comment in status_post.comments %}
-  <p>
-    {{ comment.user.user_handle }}
-    {{ comment.comment_description }}
+  <p class="comment-box">
+
+    <h6>{{ comment.user.user_handle }}</h6>
     {{ comment.post_create_date }}
+    <br>
+    {{ comment.comment_description }}
+    
   
     {% if 'user_email' in session and (comment.user.user_handle ==
     session['user_email'] or status_post.user.user_handle == session['user_email']) %}
@@ -135,28 +171,12 @@
 
 
 
-<div> 
-<h3>Add a comment</h3>
-<div class="form-group">
-<form id="comment-form" method="post" action="/post_a_comment">
-  <input hidden="true" id="status-id" name="status-id" value={{ status_post.status_id }}>
-  <label for="comment-description">Description:</label>
-  <input type="text" id="comment-description" name="comment-description"
-  onkeyup="countChar(event)" maxlength="255" />
-  <span class="help-block">Please keep comment length under 255 characters.</span>
-</div>
-
-
-  <button id="comment-button" class="btn btn-primary mt-2">Post</button>
-
-</form>
-</div>
-
 </div>
 
 {% endfor %}
 </div>
-</div>
+
+
 
 
 
