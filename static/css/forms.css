@@ -1,29 +1,40 @@
 
+   
+/* Navigation bar. */
+.navbar {
+    margin-top: 3%;
+}
+
+.nav-item {
+    
+    padding-left: 4rem;
+    font-family: Roboto;
+}
+
 
 /* Search Forms. */
 #user_handle {
     font-size: 14px;
-    padding-left: .90rem;
+    padding-left: .60rem;
+    padding-top: .60rem;
+    padding-bottom: .60rem;
     font-family: Roboto;
-    width: 936px;
-    height: 42px;
+    width: 936%;
+   
 }
 
 /* Forms. */
 
 .status-form form {
     background-color: rgb(248, 249, 250);
-    padding-left: .75rem;
     padding-top: .75rem;
     padding-bottom: .75rem;
-    width: 936px;
-    height: 250px;
     box-shadow: 5px 5px 10px rgb(224, 223, 223);
-       
+   
 }
 
 .post-status-header {
-    padding-left: .75rem;
+    padding-left: .60rem;
     font-family: Poppins;
     font-weight: 600;   
 }
@@ -32,11 +43,12 @@
     font-size: 16px;
     font-weight: 400;
     font-family: Poppins;
+    padding-left: .75rem;
 }
 
 #mood-select {
     
-    padding: 10px;
+    padding: .3rem;
     width: 150px;
     font-family: Roboto;
 }
@@ -45,36 +57,51 @@
 .description-label {
     font-size: 16px;
     padding-top: 1rem;
+    padding-left: .75rem;
+    padding-bottom: .3rem;
     font-weight: 400;
     font-family: Poppins;
+    
+}
+
+/* status description input area. */
+.form-floating{
+    padding-left: .75rem; 
 }
 
 
 #status_description::placeholder {
     font-size: 14px;
     font-family: Roboto;
+    padding-left: .60rem;
     
-   
 }
-
 
 .help-block {
     
     font-size: 14px;
     font-family: Roboto;
+    padding-left: .75rem;
     color: rgb(163, 109, 109)
     
-    
- 
+}
+
+.post-container {
+    padding-left: .75rem;
+    padding-bottom: .60rem;
+    padding-top: .75rem;
+    position: relative;
 }
 
 #post-button{
     
     width: 77px;
     height: 38px;
-    position: relative;
     bottom: 10px;
-      
+    background: rgb(6, 203, 163);
+    border-color: #06cba3;
+    color: var(--bs-heading-color,inherit)
+       
 }
 
 
@@ -82,6 +109,16 @@
     height: 80px;
     width: 600px;
     font-family: Roboto;
+}
+
+.one-status{
+    
+    border: 1px solid blueviolet;
+    background-color: rgb(248, 249, 250);
+    padding-top: .75rem;
+    padding-bottom: .75rem;
+    box-shadow: 5px 5px 10px rgb(224, 223, 223);
+    
 }
 
 
