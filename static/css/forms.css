@@ -1,10 +1,13 @@
 
-   
+
+
 /* Navigation bar. */
+
 
   
 .navbar {
     margin-top: 3%;
+    margin-left: 1.5%
     
     
 }
@@ -36,13 +39,14 @@
     padding-top: .75rem;
     padding-bottom: .75rem;
     box-shadow: 5px 5px 10px rgb(224, 223, 223);
+    
    
 }
 
 .post-status-header {
     padding-left: .60rem;
     font-family: Poppins;
-    font-weight: 600;   
+    font-weight: 600; 
 }
 
 .mood-label {
@@ -58,24 +62,33 @@
     font-weight: 400;
     width: 150px;
     font-family: Roboto;
-}
-
+    border-radius: 5px; 
+    }
 
 .description-label {
+    padding-left: .75rem;
     font-size: 16px;
     padding-top: 1rem;
-    padding-left: .75rem;
     padding-bottom: .3rem;
     font-weight: 400;
     font-family: Poppins;
     
 }
 
+
+
 /* status description box. */
 .form-floating{
     padding-left: .75rem; 
 }
 
+.my-textarea{
+    height: 80px;
+    width: 600px;
+    font-family: Roboto;
+    border-radius: 5px;
+    padding-left: .75rem; 
+}
 
 #status_description::placeholder {
     font-size: 14px;
@@ -83,6 +96,9 @@
     padding-left: .50rem;
     
 }
+
+
+
 
 .help-block {
     
@@ -97,7 +113,7 @@
     padding-left: .75rem;
     padding-bottom: .60rem;
     padding-top: .75rem;
-    position: relative;
+    
 }
 
 #post-button{
@@ -112,11 +128,6 @@
 }
 
 
-.my-textarea{
-    height: 80px;
-    width: 600px;
-    font-family: Roboto;
-}
 
 
 /* Profile page status form. */
