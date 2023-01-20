@@ -1,0 +1,33 @@
+
+/* Individual status post. */
+.one-status{
+    
+    
+    background-color: rgb(250, 250, 250);
+    padding-top: .75rem;
+    padding-bottom: .75rem;
+    box-shadow: 5px 5px 10px rgb(224, 223, 223);
+    margin-bottom: 5%;
+    
+}
+
+.user_handle_header{
+    padding-left: .60rem;
+    font-family: Poppins;
+    font-weight: 600; 
+    color: rgb(6, 203, 163);
+    text-decoration: underline;
+    text-decoration-color: rgb(6, 203, 163);
+
+}
+
+.each-status-post{
+    background-color: rgb(85, 147, 188);
+
+}
+
+.comments{
+    background-color: rgb(237, 235, 235);
+    margin-bottom: 5%;
+    margin-top: 5%
+}
