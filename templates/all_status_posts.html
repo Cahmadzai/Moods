@@ -12,7 +12,8 @@
 <link rel="stylesheet"
         href="/static/css/forms.css">
 
-<div class="container"> 
+<div class="whole-page"> 
+<div class="container">
 
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <ul class="nav nav-tabs">
@@ -27,7 +28,8 @@
     </li>
   </ul>
 </nav>
-</div>
+
+
 
 <br>
 <br> 
@@ -54,13 +56,12 @@
 <form action="/profile" method="POST">
   <label for="mood-select" class="mood-label">Choose your mood:</label>
 
-  <label class="visually-hidden" for="autoSizingSelect">Preference</label>
+<label class="visually-hidden" for="autoSizingSelect">Preference</label>
 <select name="mood" id="mood-select">
   <option value="happy">Happy</option>
   <option value="sad">Sad</option>
 </select>
 <br>
-
 
 <label for="status_description" class="description-label" >Description:</label>
 
@@ -70,23 +71,27 @@
 
   <span class="help-block">Please keep status post length under 255 characters.</span>
   <br>
-  <br>
+
+  <div class="post-container" >
   <button class="btn btn-primary" id='post-button' type="submit">Post</button>
+</div>
 
   
 
 </form>
 </div>
-</div>
+
 
 
 
 <br>
 <br>
 
-<div class="container">
+<div class="all-statuses container">
+
   
 {% for status_post in status_posts|reverse %}
+<div class="one-status container">
 
   <a href="/users/{{ status_post.user_id }}">
     <h2>{{ status_post.user.user_handle }}</h2>
@@ -98,6 +103,7 @@
 
   </p>
 
+  <div class="comments">
   {% for comment in status_post.comments %}
   <p>
     {{ comment.user.user_handle }}
@@ -111,8 +117,12 @@
     </form>
   
   </p>
+
   {% endfor %}
-  
+</div>
+
+
+
 <div> 
 <h3>Add a comment</h3>
 <div class="form-group">
@@ -130,11 +140,14 @@
 </form>
 </div>
 
+</div>
 
 {% endfor %}
 </div>
 </div>
-</div>
+
+
+
 {% endblock body %}
 
 
