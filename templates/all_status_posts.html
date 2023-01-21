@@ -1,16 +1,10 @@
 
 {% extends 'base.html' %}
 {% block title %}All Status Posts{% endblock %}
+{% block head %}
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-{% block body %}
 <link href='https://fonts.googleapis.com/css?family=Poppins:400,500,600' rel='stylesheet'>
 <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
-
-<div class="container">
-  <div class="whole-page-font">
-
 
 <link rel="stylesheet"
         href="/static/css/forms.css">
@@ -18,168 +12,214 @@
 <link rel="stylesheet"
         href="/static/css/post.css">
 
+<link rel="stylesheet" 
+        href="node_modules/bootstrap-icons/bootstrap-icons.css" />
 
 
 
-  <nav class="navbar navbar-light">
-  <ul class="nav nav-tabs">
-    <li class="nav-item">
-      <a class="nav-link" href="/profile">My profile</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="/following">Following</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link active" aria-current="page" href="/status_posts">All status posts</a>
-    </li>
-  </ul>
-</nav>
+{% endblock %}
+{% block body %}
 
 
-
-<br>
-<br> 
- 
 <div class="container">
-<form class="d-flex" method="GET" action="/search_status_posts">
-  <label for="user_handle"></label>
-  <input class="form-control me-2" type="text" id="user_handle" name="user_handle" placeholder="Search statuses by username..." aria-label="Search">
-  <button class="btn btn-outline-secondary" type="submit">Search</button>
-</form>
-</div>
-
-<br>
 
 
+  <div class="row">
+    <div class="col">
+      <nav class="navbar navbar-light">
+          <ul class="nav nav-tabs">
+          <li class="nav-item">
+            <a class="nav-link" href="/profile">My profile</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/following">Following</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/status_posts">All status posts</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
 
+  <br>
+  <br> 
+  
+  <div class="row">
+    <div class="col">
+      <form class="d-flex" method="GET" action="/search_status_posts">
+        <label for="user_handle"></label>
+        <input class="form-control me-2" type="text" id="user_handle" name="user_handle" placeholder="Search statuses by username..." aria-label="Search">
+        <button class="btn btn-outline-secondary" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
 
-<div class="status-form container">
-
-<header class='post-status-header' >
-<h4>Post a new status</h4>
-</header>
-
-<form action="/profile" method="POST">
-  <label for="mood-select" class="mood-label">Choose your mood:</label>
-
-<label class="visually-hidden" for="autoSizingSelect">Preference</label>
-<select name="mood" id="mood-select">
-  <option value="happy">Happy</option>
-  <option value="sad">Sad</option>
-</select>
-<br>
-
-<label for="status_description" class="description-label" >Description:</label>
-
-<div class="form-floating"> 
-  <textarea class="my-textarea" type="text" name="description" id="status_description" placeholder="Express your feelings..." onkeyup="countChar(event)" maxlength="255"></textarea>
-</div>
-
-  <span class="help-block">Please keep status post length under 255 characters.</span>
   <br>
 
-  <div class="post-container" >
-  <button class="btn btn-primary" id='post-button' type="submit">Post</button>
-</div>
-
-  
-
-</form>
-</div>
-
-
-
-
-<br>
-<br>
-
-<div class="all-statuses container">
-  <div class="float-start">
+  <div class="status-form">
+    <div class="row">
+      <div class="col">
+        <header class='post-status-header' >
+          <h4>Post a new status</h4>
+        </header>
+      
    
-{% for status_post in status_posts|reverse %}
-  
-  <div class="one-status container">
-  
-  
-  <a href="/users/{{ status_post.user_id }}">
-    <header class="user_handle_header">
-  
-    <h3>{{ status_post.user.user_handle }}</h3>
-  </header>
-  </a>
 
-<div class="posted-status-text">
-  
-  <header class="is-feeling-mood">
-   <h4>...is feeling {{ status_post.mood.mood_type }}</h4>
-  </header>
-    <br>
-    <div class="post-create-date">
-    {{ status_post.post_create_date }}
-    </div>
-    <br>
-    <p class="status-post-text">
-    {{ status_post.status_description }}
-  </p>
-    
-</div>
+      <form action="/profile" method="POST">
+        <label for="mood-select" class="mood-label">Choose your mood:</label>
 
-<div>
-  <header class="add-comment-header">
-  <h6>Add a comment:</h6>
-</header>
+        <label class="visually-hidden" for="autoSizingSelect">Preference</label>
+        <select name="mood" id="mood-select">
+            <option value="happy">Happy</option>
+            <option value="sad">Sad</option>
+        </select>
+        
+        <br>
 
+        <label for="status_description" class="description-label" >Description:</label>
 
-  <div class="comment-form-floating">
-  <form id="comment-form" method="post" action="/post_a_comment">
-    <input hidden="true" id="status-id" name="status-id" value={{ status_post.status_id }}>
-    
-    <textarea class="my-comment-text-area" type="text" id="comment-description" name="comment-description"
-    onkeyup="countChar(event)" maxlength="255"></textarea>
-    <br>
-    <span class="comment-help-block">Please keep comment length under 255 characters.</span>
-  
-  </div>
-  
-  <button id="comment-button" class="btn btn-primary mt-2">Post</button>
-  
-  </form>
-  </div>
+        <div class="form-floating"> 
+          <div class="row">
+            <div class="col">
+              <textarea class="my-textarea" type="text" name="description" id="status_description" placeholder="Express your feelings..." onkeyup="countChar(event)" maxlength="255"></textarea>
+        <br> 
 
-  <div class="comments">
-  {% for comment in status_post.comments %}
-  <p class="comment-box">
+              <span class="help-block">Please keep status post length under 255 characters.</span>
+            </div>
+          </div>
+        </div>
 
-    <h6>{{ comment.user.user_handle }}</h6>
-    {{ comment.post_create_date }}
-    <br>
-    {{ comment.comment_description }}
-    
-  
-    {% if 'user_email' in session and (comment.user.user_handle ==
-    session['user_email'] or status_post.user.user_handle == session['user_email']) %}
-      <form action="{{ url_for('delete_comment',
-      comment_id=comment.comment_id) }}" method="post">
-        <input type="submit" value="Delete">
+        <br>
+
+        <div class="post-container">
+          <button class="btn btn-primary" id='post-button' type="submit">Post</button>
+        </div>
+
       </form>
-    {% endif %}
-  </p>
+      </div>
+    </div>
+  </div>
 
-  {% endfor %}
+
+
+
+  <br>
+  <br>
+
+  <div class="all-statuses">
+    
+    
+    {% for status_post in status_posts|reverse %}
+      
+      <div class="one-status row">
+        
+        <div class="row">
+          <div class="col">
+            <a href="/users/{{ status_post.user_id }}">
+              <header class="user_handle_header">
+                <h3>{{ status_post.user.user_handle }}</h3>
+              </header>
+            </a>
+          </div>
+        </div>
+
+      <div class="posted-status-text">
+        <div class="row">
+          <div class="col">
+        
+            <header class="is-feeling-mood">
+              <div class="row">
+                <div class="col">
+              <h4>...is feeling {{ status_post.mood.mood_type }}</h4>
+          </div>
+        </div>
+            </header>
+            <br>
+
+            <div class="post-create-date">
+              {{ status_post.post_create_date }}
+            </div>
+            
+
+            <p class="status-post-text">
+            {{ status_post.status_description }}
+            </p>
+          </div>
+        </div>        
+      </div>
+
+
+      <div class="comment-form-area">
+        <div class="row">
+          <div class="col">
+            <header class="add-comment-header">
+              <h6>
+                Add a comment:</h6>
+            </header>
+
+              <div class="comment-form">
+                <form id="comment-form" method="post" action="/post_a_comment">
+                  <input hidden="true" id="status-id" name="status-id" value={{ status_post.status_id }}>
+                  
+                  <textarea class="my-comment-text-area" type="text" id="comment-description" name="comment-description"
+                  onkeyup="countChar(event)" maxlength="255"></textarea>
+                  <br>
+                  <span class="comment-help-block">Please keep comment length under 255 characters.</span>
+                  <br>
+                  <button id="comment-button" class="btn btn-primary mt-2">Post</button>
+              </div>
+                </form>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="comments">
+        <div class="row">
+          <div class="col-9">
+            {% for comment in status_post.comments %}
+
+              <p class="comment-box">
+                <div class="row">
+                  <div class="col">
+              
+                  <h6>{{ comment.user.user_handle }}</h6>
+                      {{ comment.post_create_date }}
+                  <br>
+                      {{ comment.comment_description }}
+                  
+                  {% if 'user_email' in session and (comment.user.user_handle ==
+                  session['user_email'] or status_post.user.user_handle == session['user_email']) %}
+                    
+                  <form action="{{ url_for('delete_comment',
+                    comment_id=comment.comment_id) }}" method="post">
+                    <input type="submit" value="Delete">
+                  </form>
+                  {% endif %}
+
+              </p>
+                  </div>
+                </div>
+
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+
+  </div>
+
+
+
+      
+
+    {% endfor %}
+
+
+
+
+
 </div>
-
-
-
-
-</div>
-
-{% endfor %}
-</div>
-
-
-
-
-
 {% endblock body %}
 
 
