@@ -1,5 +1,23 @@
 
+.whole-page container {
+    position: relative;
+}
 
+
+.logo-container {
+        position: absolute;
+        padding-top: 15px;
+        padding-left: 20px;
+                
+}
+
+
+.logout-link{
+    float: right;
+    padding-right: 15%;
+    padding-top: 5%;
+    
+}
 
 .all-statuses{
     display:flex;
@@ -33,6 +51,12 @@
     text-decoration: underline;
     text-decoration-color: rgb(6, 203, 163);
 
+}
+
+#user1-img{
+    width: 10%;
+    height:10%;
+    border-radius: 50px;
 }
 
 .add-comment-header{
