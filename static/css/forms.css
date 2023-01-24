@@ -37,7 +37,12 @@
     padding-bottom: .60rem;
     font-family: Roboto;
     width: 936%;
-   
+}
+
+#search-button { 
+    background: rgb(6, 203, 163);
+    border-color: #06cba3;
+    color: var(--bs-heading-color,inherit)
 }
 
 /* Forms. */
@@ -87,6 +92,7 @@
 
 /* status description box. */
 .form-floating{
+    
     padding-left: .75rem; 
 }
 
@@ -101,8 +107,6 @@
 #status_description::placeholder {
     font-size: 14px;
     font-family: Roboto;
-    padding-left: .50rem;
-    
 }
 
 
