@@ -300,7 +300,7 @@ def delete_comment(comment_id):
         flash("Comment deleted.")
     else:
         flash("There was an error when trying to delete your comment. Please try again")
-    return redirect("/status_posts")
+    return redirect("/profile")
 
 
 
