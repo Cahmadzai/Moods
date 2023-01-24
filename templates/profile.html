@@ -1,150 +1,289 @@
 {% extends 'base.html' %}
 {% block title %}Your profile{% endblock %}
 
-
-
-{% block body %}
+{% block head %}
 
 <link href='https://fonts.googleapis.com/css?family=Poppins:400,500,600' rel='stylesheet'>
 <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
 
-<div class="whole-page-font">
+<link rel="stylesheet"
+    href="/static/css/forms.css">
 
 <link rel="stylesheet"
-        href="/static/css/forms.css">
+    href="/static/css/post.css">
 
+<link rel="stylesheet" 
+    href="node_modules/bootstrap-icons/bootstrap-icons.css" />
 
+{% endblock %}
 
+{% block body %}
 
-<div class="container"> 
+<div class="whole-page container">
 
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-<ul class="nav nav-tabs">
-  <li class="nav-item">
-    <a class="nav-link active" aria-current="page" href="/profile">My profile</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="/following">Following</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="/status_posts">All status posts</a>
-  </li>
-</ul>
-</nav>
-
-</div>
-
-<br>
-<br>
-
-
-
-<div class="status-form container">
-
-  <header class='post-status-header' >
-  <h4>Post a new status</h4>
-  </header>
   
-  <form action="/profile" method="POST">
-    <label for="mood-select" class="mood-label">Choose your mood:</label>
-  
-    <label class="visually-hidden" for="autoSizingSelect">Preference</label>
-  <select name="mood" id="mood-select">
-    <option value="happy">Happy</option>
-    <option value="sad">Sad</option>
-  </select>
-  <br>
-  
-  
-  <label for="status_description" class="description-label" >Description:</label>
-  
-  <div class="form-floating"> 
-    <textarea class="my-textarea" type="text" name="description" id="status_description" placeholder="Express your feelings..." onkeyup="countChar(event)" maxlength="255"></textarea>
-  </div>
-  
-    <span class="help-block">Please keep status post length under 255 characters.</span>
+
+      <div class="row">
+        <div class="col">
+          <nav class="navbar navbar-light">
+              <ul class="nav nav-tabs">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/profile">My profile</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/following">Following</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/status_posts">All status posts</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+
     <br>
-    <br>
-    <button class="btn btn-primary" id='post-button' type="submit">Post</button>
+    <br> 
+
+
+
+    <div class="status-form">
+      <div class="row">
+        <div class="col">
+          <header class='post-status-header' >
+            <h4>Post a new status</h4>
+          </header>
   
-  </form>
+          <form action="/profile" method="POST">
+            <label for="mood-select" class="mood-label">Choose your mood:</label>
+    
+            <label class="visually-hidden" for="autoSizingSelect">Preference</label>
+            <select name="mood" id="mood-select">
+              <option value="amused">Amused</option>
+              <option value="angry">Angry</option>
+              <option value="anxious">Anxious</option>
+              <option value="excited">Confused</option>
+              <option value="excited">Content</option>
+              <option value="excited">Creative</option>
+              <option value="excited">Curious</option>
+              <option value="excited">Depressed</option>
+              <option value="excited">Empowered</option>
+              <option value="excited">Envious</option>
+              <option value="excited">Excited</option>
+              <option value="excited">Frustrated</option>
+              <option value="excited">Grateful</option>
+              <option value="happy">Happy</option>
+              <option value="excited">Lonely</option>
+              <option value="excited">Love</option>
+              <option value="excited">Productive</option>
+              <option value="excited">Relaxed</option>
+              <option value="sad">Sad</option>
+              <option value="excited">Stressed</option>
+              <option value="excited">Tired</option>
+            </select>
+            
+            <br>
+  
+  
+            <label for="status_description" class="description-label" >Description:</label>
+
+            <div class="form-floating"> 
+              <div class="row">
+                <div class="col">
+                  <textarea class="my-textarea" type="text" name="description" id="status_description" placeholder="Express your feelings..." onkeyup="countChar(event)" maxlength="255"></textarea>
+            <br> 
+    
+                  <span class="help-block">Please keep status post length under 255 characters.</span>
+                </div>
+              </div>
+            </div>
+    
+            <br>
+    
+            <div class="post-container">
+              <button class="btn btn-primary" id='post-button' type="submit">Post</button>
+            </div>
+    
+          </form>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="all-statuses">
+
+      <header class='your-status-header' >
+          <h4>Your feelings</h4>
+      </header>
+
+
+          {% if status_posts |length == 0 %}
+            <p>Currently no status posts</p>
+          {% else %}
+
+            {% for status_post in status_posts %}
+          {% endfor %}
+          {% endif %}
+
+
+          {% for status_post in status_posts|reverse %}
+              <div class="one-status row">
+
+        
+            <div class="row">
+              <div class="col">
+                <a href="/users/{{ status_post.user_id }}" class="short-underline">
+                  
+                  <header class="user_handle_header">
+                    <h3>
+            <!-- {% if not status_post %}
+              <p>Currently no status posts</p>
+            {% endif %} -->
+                      {{ status_post.user.user_handle }}
+    
+                    </h3>
+                  </header>
+            
+                </a>
+                <svg xmlns="http://www.w3.org/2000/svg" width="70" height="70" class="profile-icon" class="bi bi-person-circle" viewBox="0 0 16 16">
+                  <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                  <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" class="camera-icon" class="bi bi-camera-fill" viewBox="0 0 16 16">
+                  <path d="M10.5 8.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
+                  <path d="M2 4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-1.172a2 2 0 0 1-1.414-.586l-.828-.828A2 2 0 0 0 9.172 2H6.828a2 2 0 0 0-1.414.586l-.828.828A2 2 0 0 1 3.172 4H2zm.5 2a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1zm9 2.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0z"/>
+                </svg>
+              </div>
+            </div>
+
+  
+
+            <div class="posted-status-text">
+              <div class="row">
+                <div class="col">
+      
+              
+                  <header class="is-feeling-mood">
+                    <div class="row">
+                      <div class="col">
+                    <h5>Feeling {{ status_post.mood.mood_type }}</h5>
+                </div>
+              </div>
+                  </header>
+                  <br>
+      
+                  <div class="post-create-date">
+                    <span class="date">{{ status_post.post_create_date.strftime("%B %d, %Y") }}</span>
+                    <span class="time">{{ status_post.post_create_date.strftime("at %H:%M") }}</span>
+                  </div>
+
+                  <p class="status-post-text">
+                    {{ status_post.status_description }}
+                    <form action="{{ url_for('delete_status',
+                    status_id=status_post.status_id) }}" method="post">
+                    <input type="submit" value="Delete">
+                    </form>
+                  </p>
+
+                </div>
+              </div>        
+            </div>
+
+
+
+
+            
+  
+                     
+
+<div class="comment-form-area">
+        <div class="row">
+          <div class="col">
+            <header class="add-comment-header">
+              <h6>
+                
+                <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" fill="currentColor" class="bi bi-chat-right-text" viewBox="0 0 16 16">
+                  <path d="M2 1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h9.586a2 2 0 0 1 1.414.586l2 2V2a1 1 0 0 0-1-1H2zm12-1a2 2 0 0 1 2 2v12.793a.5.5 0 0 1-.854.353l-2.853-2.853a1 1 0 0 0-.707-.293H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12z"/>
+                  <path d="M3 3.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM3 6a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 6zm0 2.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z"/>
+                </svg>
+                Add a comment
+              </h6>
+            </header>
+
+              <div class="comment-form">
+                <form id="comment-form" method="post" action="/post_a_comment">
+                  <input hidden="true" id="status-id" name="status-id" value={{ status_post.status_id }}>
+                  
+                  <textarea class="my-comment-text-area" type="text" id="comment-description" name="comment-description"
+                  onkeyup="countChar(event)" maxlength="255"></textarea>
+                  <br>
+                  <span class="comment-help-block">Please keep comment length under 255 characters.</span>
+                  <br>
+                  <button id="comment-button" class="btn btn-primary mt-2">Post</button>
+              </div>
+                </form>
+          </div>
+        </div>
+      </div>
+
+
+
+      <div class="comments">
+        <div class="row">
+          <div class="col-9">
+            {% for comment in status_post.comments %}
+              <div class="comment-area">
+
+                <p class="comment-box">
+                  <div class="row">
+                    <div class="col">
+                
+                    <h6 class="comment-user-handle"> {{ comment.user.user_handle }} </h6>
+                        <!-- {{ comment.post_create_date }} -->
+                        <!-- class="user-handle" style="display: inline-block"> -->
+                        <span class="comment-date">{{ comment.post_create_date.strftime("%B %d, %Y at %H:%M") }}</span>
+                        <!-- <span class="comment-time">{{ comment.post_create_date.strftime("at %H:%M") }}</span> -->
+                    <br>
+                    
+                    <span class="comment-posted">{{ comment.comment_description }}</span>
+                    
+                      <div class="row">
+                        <div class="col">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="comment-trash" viewBox="0 0 16 16">
+                            <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
+                          </svg>
+                        </div>
+                      </div>
+                  
+                      <form action="{{ url_for('delete_comment',
+                        comment_id=comment.comment_id) }}" method="post">
+                        <input type="submit" class="comment-delete-button" value="Delete comment">
+                      </form>
+                   
+                  </div>
+                </div>
+
+                </p>
+                    
+              </div>
+
+
+             
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+
   </div>
-  </div>
-  <br>
-  <br>
-</form>
 
 
-<div class="container">
-<div class="page">
 
-<header class='your-status-header' >
-    <h4>Your feelings</h4>
-</header>
+    {% endfor %}
 
+    
 
-{% if status_posts |length == 0 %}
-  <p>Currently no status posts</p>
-{% else %}
-
-  {% for status_post in status_posts %}
-  
-{% endfor %}
-{% endif %}
-
-{% for status_post in status_posts|reverse %}
-  {% if not status_post %}
-    <p>Currently no status posts</p>
-  {% endif %}
-  <p>
-    {{ status_post.user.user_handle }}
-    {{ status_post.mood.mood_type }}
-    {{ status_post }}
-    <form action="{{ url_for('delete_status',
-    status_id=status_post.status_id) }}" method="post">
-      <input type="submit" value="Delete">
-    </form>
-  </p>
-
-
-  {% for comment in status_post.comments %}
-  <p>
-    {{ comment.user.user_handle }}
-    {{ comment.comment_description }}
-    {{ comment.post_create_date }}
-   
-  </p>
-
-  <form action="{{ url_for('delete_comment',
-    comment_id=comment.comment_id) }}" method="post">
-      <input type="submit" value="Delete">
-    </form>
-
-  </p>
-  {% endfor %}
-
-<h3>Add a comment</h3>
-<div class="form-group">
-<form id="comment-form" method="post" action="/post_a_comment">
-  <input hidden="true" id="status-id" name="status-id" value={{ status_post.status_id }}>
-  <label for="comment-description">Description:</label>
-  <input type="text" id="comment-description" name="comment-description"
-  onkeyup="countChar(event)" maxlength="255" />
-  <span class="help-block">Please keep comment length under 255 characters.</span>
-</div>
-
-
-  <button id="comment-button" class="btn btn-primary mt-2">Post</button>
-
-</form>
-
-
- 
-  
-{% endfor %}
-
-
-</div>
-</div>
 </div>
 {% endblock body %}
+
+
+
+
