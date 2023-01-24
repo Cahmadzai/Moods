@@ -50,7 +50,7 @@
       <form class="d-flex" method="GET" action="/search_status_posts">
         <label for="user_handle"></label>
         <input class="form-control me-2" type="text" id="user_handle" name="user_handle" placeholder="Search statuses by username..." aria-label="Search">
-        <button class="btn btn-outline-secondary" type="submit">Search</button>
+        <button id="search-button" class="btn btn-outline-secondary" type="submit">Search</button>
       </form>
     </div>
   </div>
@@ -126,8 +126,9 @@
                       <path d="M8 11a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5zm0 1a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7zM3 6.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0z"/>
                     </svg> -->
                   {{ status_post.user.user_handle }}
-                </h3>
     
+                </h3>
+
               </header>
             </a>
             <svg xmlns="http://www.w3.org/2000/svg" width="70" height="70" class="profile-icon" class="bi bi-person-circle" viewBox="0 0 16 16">
@@ -143,9 +144,12 @@
 
         <!-- <img id="user1-img" src="/static/images/user1.jpg" alt="user one" class="img-fluid rounded-circle"> -->
 
+      
+
       <div class="posted-status-text">
         <div class="row">
           <div class="col">
+
         
             <header class="is-feeling-mood">
               <div class="row">
@@ -157,7 +161,8 @@
             <br>
 
             <div class="post-create-date">
-              {{ status_post.post_create_date.strftime("%B %d, %Y at %H:%M") }}
+              <span class="date">{{ status_post.post_create_date.strftime("%B %d, %Y") }}</span>
+              <span class="time">{{ status_post.post_create_date.strftime("at %H:%M") }}</span>
             </div>
             
 
@@ -208,10 +213,14 @@
                   <div class="row">
                     <div class="col">
                 
-                    <h6>{{ comment.user.user_handle }}</h6>
-                        {{ comment.post_create_date }}
+                    <h6 class="comment-user-handle"> {{ comment.user.user_handle }} </h6>
+                        <!-- {{ comment.post_create_date }} -->
+                        <!-- class="user-handle" style="display: inline-block"> -->
+                        <span class="comment-date">{{ comment.post_create_date.strftime("%B %d, %Y at %H:%M") }}</span>
+                        <!-- <span class="comment-time">{{ comment.post_create_date.strftime("at %H:%M") }}</span> -->
                     <br>
-                        {{ comment.comment_description }}
+                    
+                    <span class="comment-posted">{{ comment.comment_description }}</span>
                     
                     {% if 'user_email' in session and (comment.user.user_handle ==
                     session['user_email'] or status_post.user.user_handle == session['user_email']) %}
