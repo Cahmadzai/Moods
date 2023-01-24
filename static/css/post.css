@@ -46,18 +46,21 @@
 }
 
 .user_handle_header{
-    
+    position: relative;
     font-family: Poppins;
-    
     font-weight: 600; 
     color: rgb(6, 203, 163);
-    text-decoration: underline;
-    text-decoration-color: rgb(6, 203, 163);
-     
+    margin-left: 15%;
+    margin-top: 0;
+    bottom: -20px;
+   
 }
 
 .short-underline {
     text-decoration: none;
+    text-decoration: underline;
+    text-decoration-color: rgb(6, 203, 163);
+    left: 0;
 }
 
 
@@ -71,21 +74,18 @@
 .profile-icon {
     position: relative;
     left: 8px;
+    top: -40px;
     fill: rgba(167, 166, 166, 0.589)
     
 }
 .camera-icon {
     position: relative;
-    right: 44px;
-    top: 5px;
-    bottom: 0px;
+    right: 42px;
+    top: -35px;
     z-index: 1;
     fill: rgba(0, 0, 0, 0.695)
-    
-    
+       
 }
-
-
 
 .add-comment-header{
     
@@ -97,11 +97,12 @@
     margin-top: 5%;
     padding-left: 7%;     
 }
-/* 
+
 .comment-box {
-    border: .5px solid gray;
+    border: .5px solid rgb(205, 204, 204);
        
-}  */
+} 
+
 
 .comment-area {
     border: 1px solid lightgray;
@@ -110,8 +111,20 @@
     padding-left: 10px;
     margin-bottom: 10px;
     border-radius: 5px;
+    position: relative;
     
 }
+
+/* .comment-area::before {
+    content: "";
+    position: absolute;
+    left: 10px;
+    top: -0%;
+    bottom: 10px;
+    width: 1px;
+    background-color: #ccc;
+} */
+
 
 
 
