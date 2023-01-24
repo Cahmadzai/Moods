@@ -4,17 +4,74 @@
     
 }
 
+body {
+    background-color: rgb(255, 255, 255);
+}
+
+
 div {
     text-align: left;
   }
+
+.status-delete-button{
+    position: absolute;
+    background-color: none;
+    text-decoration: underline;
+    color: blue;
+    border: none;
+    padding: 0;
+    left: 70%;
+    bottom: 50%;
+    font-size: 14px;
+    font-style: Roboto;
+    display: flex;
+}
+
+.status-delete-button:hover {
+    color: red;
+    text-decoration: none;
+}
+
+  .comment-delete-button {
+    position: absolute;
+    background-color: none;
+    text-decoration: underline;
+    color: blue;
+    border: none;
+    padding: 0;
+    left: 78%;
+    bottom: 68.5%;
+    font-size: 14px;
+    font-style: Roboto;
+    display: flex;
+}
+
+.comment-delete-button:hover {
+    color: red;
+    text-decoration: none;
+}
+
+.comment-trash{
+    position: absolute;
+    padding: 0;
+    left: 74%;
+    bottom: 71%;
+}
+
+.status-trash{
+    position: absolute;
+    padding: 0;
+    left: 74.5%;
+    bottom: 31%;
+}
+
 
 .logo-container {
         position: absolute;
         padding-top: 15px;
         padding-left: 8px;
         bottom: 718px;
-        
-                
+               
 }
 
 
@@ -199,22 +256,29 @@ div {
 .post-create-date{
     position: relative;
     left: 10px;
-    bottom: 90px;
-    margin-left: 79%;
+    bottom: 65px;
+    margin-left: 12.5%;
     margin-top: -12%;
     font-size: 14px;
     flex: 1;
-    text-align: right;
+    /* text-align: center; */
 }
 
-.post-create-date .date {
+.post-create-date .status-date{
+    display: relative;
+    font-size: 13px;
+    bottom:0;
+    
+}
+
+/* .post-create-date .date {
     display: flex;
 }
 .post-create-date .time {
     display: flex;
     padding-left: 57px;
    
-}
+} */
 
 
 .status-post-text{
