@@ -1,7 +1,7 @@
 
 .whole-page {
     position: relative;
-    bottom: 270px;
+    bottom: 250px;
     
 }
 
@@ -89,13 +89,14 @@ div {
         position: relative;
         padding-bottom: 34px;
         right: 80px;
-        bottom: 18px;                   
+        bottom: 18px;
+        height: 345px;                   
 }
 
 
 .logout-link{
     float: right;
-    padding-top: 33px;
+    padding-top: 2px;
     padding-right: 10px;
     
        
