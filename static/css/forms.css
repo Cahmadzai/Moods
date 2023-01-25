@@ -1,23 +1,24 @@
-/* 
- 
-    .row {
+
+
+    /* .row {
     border: 2px solid rgb(215, 38, 194);
   }  
    .col {
     border: 1px solid rgb(39, 168, 82);
   }   */
-  
+
 
 /* Navigation bar. */
 
 
   
 .navbar {
-    margin-top: 23%;
-    margin-left: 1.5%
-
+    top: 30%;
+    margin-bottom: 7.5%;
+    margin-top: 8%;
+    margin-left: 1.5%;
     
-    
+      
 }
 
 .nav-item {
@@ -149,13 +150,15 @@
     padding-left: .75rem;
     font-family: Poppins;
     font-weight: 600;
-    padding-top: 1.5rem;
+    padding-top: 2.5rem;
+    padding-bottom: .1rem;
     right: 15px;
 }
 
 .your-followers-header{
     position: relative;
     padding-left: .75rem;
+    padding-bottom: .1rem;
     font-family: Poppins;
     font-weight: 600;
     right: 15px;
