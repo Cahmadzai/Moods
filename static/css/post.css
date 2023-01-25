@@ -1,6 +1,7 @@
 
-.whole-page container {
+.whole-page {
     position: relative;
+    bottom: 270px;
     
 }
 
@@ -84,20 +85,20 @@ div {
 } */
 
 
-.logo-container {
-        position: absolute;
-        padding-top: 15px;
-        padding-left: 8px;
-        bottom: 718px;
-               
+.logo {
+        position: relative;
+        padding-bottom: 34px;
+        right: 80px;
+        bottom: 18px;                   
 }
 
 
 .logout-link{
     float: right;
-    padding-right: 15%;
-    padding-top: 5%;
+    padding-top: 33px;
+    padding-right: 10px;
     
+       
 }
 
 .all-statuses{
