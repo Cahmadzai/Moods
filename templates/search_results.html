@@ -26,6 +26,14 @@
 {% block body %}
 
 <div class="whole-page container">
+
+  {% if 'user_email' in session %}
+  <div class="logout-link">
+    <a href="/logout">Logout</a>
+  </div>
+
+{% endif %}
+
   <div class="row">
     <div class="col">
       <nav class="navbar navbar-light">
