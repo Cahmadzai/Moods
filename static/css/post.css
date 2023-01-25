@@ -14,14 +14,14 @@ div {
   }
 
 .status-delete-button{
-    position: relative;
+    position: absolute;
     background-color: none;
     text-decoration: underline;
     color: blue;
     border: none;
     padding: 0;
-    left: 525px;
-    bottom: 345px;
+    left: 85%;
+    bottom: 10%;
     font-size: 14px;
     font-style: Roboto;
     display: flex;
@@ -55,19 +55,33 @@ div {
     text-decoration: none;
 }
 
-.comment-trash{
+/* .comment-delete-button-all-status{
+    position: absolute;
+    background-color: none;
+    text-decoration: underline;
+    color: blue;
+    border: none;
+    padding: 0;
+    left: 78%;
+    bottom: 68.5%;
+    font-size: 14px;
+    font-style: Roboto;
+    display: flex;
+} */
+
+/* .comment-trash{
     position: absolute;
     padding: 0;
     left: 74%;
     bottom: 71%;
-}
+} */
 
-.status-trash{
+/* .status-trash{
     position: absolute;
     padding: 0;
     left: 542px;
     bottom: 346.5px;
-}
+} */
 
 
 .logo-container {
