@@ -70,28 +70,28 @@
 
         <label class="visually-hidden" for="autoSizingSelect">Preference</label>
         <select name="mood" id="mood-select">
-          <option value="excited">Amused</option>
-          <option value="excited">Angry</option>
-          <option value="excited">Anxious</option>
-          <option value="excited">Confused</option>
-          <option value="excited">Content</option>
-          <option value="excited">Creative</option>
-          <option value="excited">Curious</option>
-          <option value="excited">Depressed</option>
-          <option value="excited">Empowered</option>
-          <option value="excited">Envious</option>
-          <option value="excited">Excited</option>
-          <option value="excited">Frustrated</option>
-          <option value="excited">Grateful</option>
-          <option value="happy">Happy</option>
-          <option value="excited">Lonely</option>
-          <option value="excited">Love</option>
-          <option value="excited">Productive</option>
-          <option value="excited">Relaxed</option>
-          <option value="excited">Sad</option>
-          <option value="excited">Stressed</option>
-          <option value="excited">Tired</option>
-        </select>
+          <option value="amused">Amused</option>
+              <option value="angry">Angry</option>
+              <option value="anxious">Anxious</option>
+              <option value="confused">Confused</option>
+              <option value="content">Content</option>
+              <option value="creative">Creative</option>
+              <option value="curious">Curious</option>
+              <option value="depressed">Depressed</option>
+              <option value="empowered">Empowered</option>
+              <option value="envious">Envious</option>
+              <option value="excited">Excited</option>
+              <option value="frustrated">Frustrated</option>
+              <option value="grateful">Grateful</option>
+              <option value="happy">Happy</option>
+              <option value="lonely">Lonely</option>
+              <option value="love">Love</option>
+              <option value="productive">Productive</option>
+              <option value="relaxed">Relaxed</option>
+              <option value="sad">Sad</option>
+              <option value="stressed">Stressed</option>
+              <option value="tired">Tired</option>
+            </select>
         
         <br>
 
@@ -139,10 +139,7 @@
               <header class="user_handle_header">
                 <h3>
                     
-                    <!-- <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" class="camera-icon" class="bi bi-camera" viewBox="0 0 16 16">
-                      <path d="M15 12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h1.172a3 3 0 0 0 2.12-.879l.83-.828A1 1 0 0 1 6.827 3h2.344a1 1 0 0 1 .707.293l.828.828A3 3 0 0 0 12.828 5H14a1 1 0 0 1 1 1v6zM2 4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-1.172a2 2 0 0 1-1.414-.586l-.828-.828A2 2 0 0 0 9.172 2H6.828a2 2 0 0 0-1.414.586l-.828.828A2 2 0 0 1 3.172 4H2z"/>
-                      <path d="M8 11a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5zm0 1a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7zM3 6.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0z"/>
-                    </svg> -->
+                    
                   {{ status_post.user.user_handle }}
     
                 </h3>
@@ -160,7 +157,7 @@
           </div>
         </div>
 
-        <!-- <img id="user1-img" src="/static/images/user1.jpg" alt="user one" class="img-fluid rounded-circle"> -->
+        
 
       
 
@@ -233,22 +230,25 @@
                     <div class="col">
                 
                     <h6 class="comment-user-handle"> {{ comment.user.user_handle }} </h6>
-                        <!-- {{ comment.post_create_date }} -->
-                        <!-- class="user-handle" style="display: inline-block"> -->
+                        
                         <span class="comment-date">{{ comment.post_create_date.strftime("%B %d, %Y at %H:%M") }}</span>
-                        <!-- <span class="comment-time">{{ comment.post_create_date.strftime("at %H:%M") }}</span> -->
+                       
                     <br>
                     
                     <span class="comment-posted">{{ comment.comment_description }}</span>
                     
-                    {% if 'user_email' in session and (comment.user.user_handle ==
-                    session['user_email'] or status_post.user.user_handle == session['user_email']) %}
+                    
+
+                    {% if 'user_email' in session and comment.user.user_handle ==
+                    session['user_email'] %}
                       
-                    <form action="{{ url_for('delete_comment',
+              
+                      <form action="{{ url_for('delete_comment',
                       comment_id=comment.comment_id) }}" method="post">
-                      <input type="submit" value="Delete">
-                    </form>
-                    {% endif %}
+                      <input type="submit" class="comment-delete-button" value="Delete comment">
+                      </form>
+                      
+                   {% endif %} 
                   </div>
                 </div>
 
@@ -261,7 +261,7 @@
         </div>
       </div>
 
-  </div>
+    </div>
 
 
 
