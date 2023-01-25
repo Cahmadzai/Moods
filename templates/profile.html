@@ -61,24 +61,24 @@
               <option value="amused">Amused</option>
               <option value="angry">Angry</option>
               <option value="anxious">Anxious</option>
-              <option value="excited">Confused</option>
-              <option value="excited">Content</option>
-              <option value="excited">Creative</option>
-              <option value="excited">Curious</option>
-              <option value="excited">Depressed</option>
-              <option value="excited">Empowered</option>
-              <option value="excited">Envious</option>
+              <option value="confused">Confused</option>
+              <option value="content">Content</option>
+              <option value="creative">Creative</option>
+              <option value="curious">Curious</option>
+              <option value="depressed">Depressed</option>
+              <option value="empowered">Empowered</option>
+              <option value="envious">Envious</option>
               <option value="excited">Excited</option>
-              <option value="excited">Frustrated</option>
-              <option value="excited">Grateful</option>
+              <option value="frustrated">Frustrated</option>
+              <option value="grateful">Grateful</option>
               <option value="happy">Happy</option>
-              <option value="excited">Lonely</option>
-              <option value="excited">Love</option>
-              <option value="excited">Productive</option>
-              <option value="excited">Relaxed</option>
+              <option value="lonely">Lonely</option>
+              <option value="love">Love</option>
+              <option value="productive">Productive</option>
+              <option value="relaxed">Relaxed</option>
               <option value="sad">Sad</option>
-              <option value="excited">Stressed</option>
-              <option value="excited">Tired</option>
+              <option value="stressed">Stressed</option>
+              <option value="tired">Tired</option>
             </select>
             
             <br>
@@ -112,7 +112,7 @@
       <div class="all-statuses">
 
       <header class='your-status-header' >
-          <h4>Your feelings</h4>
+          <h4>Your statuses</h4>
       </header>
 
 
@@ -134,12 +134,21 @@
                   
                   <header class="user_handle_header">
                     <h3>
-            <!-- {% if not status_post %}
-              <p>Currently no status posts</p>
-            {% endif %} -->
+        
                       {{ status_post.user.user_handle }}
+
     
                     </h3>
+                    <form action="{{ url_for('delete_status',
+                  status_id=status_post.status_id) }}" method="post">
+                  <input type="submit" class="status-delete-button" value="Delete status">
+                  </form>
+
+                  
+                      <!-- <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="status-trash" viewBox="0 0 16 16">
+                        <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
+                      </svg> -->
+                   
                   </header>
             
                 </a>
@@ -180,11 +189,12 @@
                   </p>
 
                   
-                
+                   
 
                 </div>
                 
-              </div>        
+              </div>
+                      
             </div>
 
 
@@ -227,7 +237,7 @@
 
 
       <div class="comments">
-        <div class="row">
+        <div class="row-3">
           <div class="col-9">
             {% for comment in status_post.comments %}
               <div class="comment-area">
@@ -245,19 +255,22 @@
                     
                     <span class="comment-posted">{{ comment.comment_description }}</span>
                     
-                      <div class="row">
+                      <!-- <div class="row">
                         <div class="col">
                           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="comment-trash" viewBox="0 0 16 16">
                             <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
                           </svg>
                         </div>
-                      </div>
+                      </div> -->
                   
                       
+                        
                       <form action="{{ url_for('delete_comment',
                         comment_id=comment.comment_id) }}" method="post">
                         <input type="submit" class="comment-delete-button" value="Delete comment">
                       </form>
+                      
+                     
                    
                   </div>
                 </div>
@@ -270,18 +283,9 @@
               
             {% endfor %}
            
-            <div class="row">
-              <div class="col">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="status-trash" viewBox="0 0 16 16">
-                  <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
-                </svg>
-              </div>
-            </div>
+            
 
-            <form action="{{ url_for('delete_status',
-            status_id=status_post.status_id) }}" method="post">
-            <input type="submit" class="status-delete-button" value="Delete status">
-            </form>
+                     
             
           
             
