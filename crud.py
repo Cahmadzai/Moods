@@ -124,7 +124,7 @@ def get_comments(status_id):
 
 def get_all_status_posts():
     """Return all status posts."""
-    return Status.query.all()
+    return Status.query.order_by(Status.post_create_date).all()
 
 def create_mood(mood_type):
 
