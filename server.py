@@ -244,6 +244,11 @@ def post_a_status():
     user = crud.get_user_by_email(user_email)
     #Retrieve mood value and return mood type
     mood_from_db = crud.get_mood_type(mood)
+    print(f"this is MOOD FROM DB **** {mood_from_db}")
+    print(f"this is MOOD **** {mood}")
+    #Bug * trying to set a new mood that doesn't exist.  Happy, sad, frustrated existed in the database already so they work.
+    #Need to add logic, if mood form db == none then create mood (crud function)
+    #otherwise go to line 250
     # Creating a new status post
     new_status_post = crud.create_status(user.user_id, status_description, post_create_date, mood_from_db.mood_id)
 
