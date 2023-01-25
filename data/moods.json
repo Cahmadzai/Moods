@@ -2,10 +2,82 @@
     {
         "mood_type": "happy"
     },
+
     {
         "mood_type": "sad"
     },
+
     {
-        "mood_type": "frustrated"
-    }  
+        "mood_type": "amused"
+    }, 
+
+    {
+        "mood_type": "angry"
+    },
+
+    {
+        "mood_type": "anxious"
+    },
+
+    {
+        "mood_type": "confused"
+    },
+
+    {
+        "mood_type": "content"
+    },
+    
+    {
+        "mood_type": "creative"
+    },
+
+    {
+        "mood_type": "curious"
+    },
+
+    {
+        "mood_type": "depressed"
+    },
+
+    {
+        "mood_type": "empowered"
+    },
+
+    {
+        "mood_type": "envious"
+    },
+
+    {
+        "mood_type": "excited"
+    },
+
+    {
+        "mood_type": "grateful"
+    },
+
+    {
+        "mood_type": "lonely"
+    },
+
+    {
+        "mood_type": "love"
+    },
+
+    {
+        "mood_type": "productive"
+    },
+
+    {
+        "mood_type": "relaxed"
+    },
+
+    {
+        "mood_type": "stressed"
+    },
+
+    {
+        "mood_type": "tired"
+    }
 ]
+
+              
