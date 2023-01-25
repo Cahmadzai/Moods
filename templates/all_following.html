@@ -1,73 +1,206 @@
 {% extends 'base.html' %}
 {% block title %}Following{% endblock %}
+{% block head %}
 
+<link href='https://fonts.googleapis.com/css?family=Poppins:400,500,600' rel='stylesheet'>
+<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
 
+<link rel="stylesheet"
+        href="/static/css/forms.css">
+
+<link rel="stylesheet"
+        href="/static/css/post.css">
+
+<link rel="stylesheet" 
+        href="node_modules/bootstrap-icons/bootstrap-icons.css" />
+
+{% endblock %}
 
 {% block body %}
 
-<div class="container"> 
+ <div class="whole-page container">
 
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-<ul class="nav nav-tabs">
-  <li class="nav-item">
-    <a class="nav-link" href="/profile">My profile</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link active" aria-current="page" href="/following">Following</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="/status_posts">All status posts</a>
-  </li>
-</ul>
-  </nav>
+  <div class="row">
+    <div class="col">
+      <nav class="navbar navbar-light">
+          <ul class="nav nav-tabs">
+          <li class="nav-item">
+            <a class="nav-link" href="/profile">My profile</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/following">Following</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/status_posts">All status posts</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
   </div>
 
+  <br>
+  <br> 
 
-    {% for user in followed %}
-    <a href="/users/{{ user.user_id }}">
-        <h2>{{ user.user_handle }}</h2>
-      </a>
-        
+  <!-- <div class="all-statuses"> -->
+
+    <div class="all-statuses">
+ 
+
+      {% for user in followed %}
         {% for status in user.status_posts|reverse %}
-            <p>{{ status.mood.mood_type }}
-               {{ status.status_description }}
-		       {{ status.post_create_date }}
-            </p>
+          <div class="one-status row">
 
-        {% for comment in status.comments %}
-        <p>
-          {{ comment.user.user_handle }}
-          {{ comment.comment_description }}
-          {{ comment.post_create_date }}
+            <div class="row">
+              <div class="col">
+              <a href="/users/{{ user.user_id }}" class="short-underline">
+                <header class="user_handle_header">
+                  <h2>
+                  {{ user.user_handle }}
+                  </h2>
 
-          <form action="{{ url_for('delete_comment',
-    comment_id=comment.comment_id) }}" method="post">
-      <input type="submit" value="Delete">
-    </form>
-         
-        </p>
+                </header>
+              </a>
+                <svg xmlns="http://www.w3.org/2000/svg" width="70" height="70" class="profile-icon" class="bi bi-person-circle" viewBox="0 0 16 16">
+                  <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                  <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" class="camera-icon" class="bi bi-camera-fill" viewBox="0 0 16 16">
+                  <path d="M10.5 8.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
+                  <path d="M2 4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-1.172a2 2 0 0 1-1.414-.586l-.828-.828A2 2 0 0 0 9.172 2H6.828a2 2 0 0 0-1.414.586l-.828.828A2 2 0 0 1 3.172 4H2zm.5 2a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1zm9 2.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0z"/>
+                </svg>
+              </div>
+            </div>
+
+
   
-        {% endfor %}
-        <h3>Add a comment</h3>
-<form id="comment-form" method="post" action="/post_a_comment">
-  <input hidden="true" id="status-id" name="status-id" value={{ status.status_id }}>
-  <label for="comment-description">Description:</label>
-  <input type="text" id="comment-description" name="comment-description"
-  onkeyup="countChar(event)" maxlength="255" />
-  <span class="help-block">Please keep comment length under 255 characters.</span>
+          
+        
+
+            <div class="posted-status-text">
+              <div class="row">
+                <div class="col">
+
+                  <header class="is-feeling-mood">
+                    <div class="row">
+                      <div class="col">
+                        <h5>Feeling {{ status.mood.mood_type }}</h5>
+                      </div>
+                   </div>
+                  </header>
+            <br>
+
+            <div class="post-create-date">
+              <span class="status-date">{{ status.post_create_date.strftime("%B %d, %Y at %H:%M") }}</span>
+            </div>
+
+              <p class="status-post-text">
+              {{ status.status_description }}
+              </p>
+            </div>
+          </div>        
+        </div>
+        
+        <div class="comment-form-area">
+          <div class="row">
+            <div class="col">
+              <header class="add-comment-header">
+                <h6>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" fill="currentColor" class="bi bi-chat-right-text" viewBox="0 0 16 16">
+                    <path d="M2 1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h9.586a2 2 0 0 1 1.414.586l2 2V2a1 1 0 0 0-1-1H2zm12-1a2 2 0 0 1 2 2v12.793a.5.5 0 0 1-.854.353l-2.853-2.853a1 1 0 0 0-.707-.293H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12z"/>
+                    <path d="M3 3.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM3 6a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 6zm0 2.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z"/>
+                  </svg>
+                  Add a comment
+                </h6>
+              </header>
+  
+                <div class="comment-form">
+                  <form id="comment-form" method="post" action="/post_a_comment">
+                    <input hidden="true" id="status-id" name="status-id" value={{ status.status_id }}>
+                    
+                    <textarea class="my-comment-text-area" type="text" id="comment-description" name="comment-description"
+                    onkeyup="countChar(event)" maxlength="255"></textarea>
+                    <br>
+                    <span class="comment-help-block">Please keep comment length under 255 characters.</span>
+                    <br>
+                    <button id="comment-button" class="btn btn-primary mt-2">Post</button>
+                </div>
+                  </form>
+            </div>
+          </div>
+        </div>
+
+        <div class="comments">
+          <div class="row">
+            <div class="col-9">
+              {% for comment in status.comments %}
+                <div class="comment-area">
+  
+                  <p class="comment-box">
+                    <div class="row">
+                      <div class="col">
+                  
+                      <h6 class="comment-user-handle"> {{ comment.user.user_handle }} </h6>
+                          
+                          <span class="comment-date">{{ comment.post_create_date.strftime("%B %d, %Y at %H:%M") }}</span>
+                         
+                      <br>
+                      
+                      <span class="comment-posted">{{ comment.comment_description }}</span>
+                      
+                      
+  
+                      {% if 'user_email' in session and comment.user.user_handle ==
+                      session['user_email'] %}
+                        
+                
+                        <form action="{{ url_for('delete_comment',
+                        comment_id=comment.comment_id) }}" method="post">
+                        <input type="submit" class="comment-delete-button" value="Delete comment">
+                        </form>
+
+        
+                     {% endif %} 
+
+                     {% if not followed %}
+                        <p>Currently not following any users</p>
+                     {% endif %}
+                    </div>
+                  </div>
+  
+                  </p>
+                      
+                </div>
+  
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+  
+      </div>
+  
+  
+  
+        
+  
+      {% endfor %}
+
+  {% endfor %}
+  
+  
+  
+  
+  
+  </div>
+  {% endblock body %}
+  
 
 
-  <button id="comment-button" class="btn btn-primary mt-2">Post</button>
 
-</form>
 
-        {% endfor %}
 
-    {% endfor %}
-    {% if not followed %}
-        <p>Currently not following any users</p>
-    {% endif %}
-{% endblock %}
+
+
+      
 
 
 
