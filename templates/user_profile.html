@@ -67,18 +67,21 @@
         
   <div class="row">
     <div class="col">
+
+      
+
        
         {% if is_following %}
         <form id="unfollow-form" method="post" action="/unfollow">
             <input hidden="true" id="unfollow-user-handle" name="unfollow_user_handle" value= {{ user_handle }}>
-            <button id="unfollow-button" class="unfollow-button">Unfollow</button>
+            <button class="btn btn-primary btn-sm" id="unfollow-button" class="unfollow-button">Unfollow</button>
         </form>
       
     
         {% else %}
         <form id="follow-form" method="post" action="/follow">
             <input hidden="true" id="follow-user-handle" name="follow_user_handle" value= {{ user_handle }}>
-            <button id="follow-button" class="follow-button">Follow</button>
+            <button class="btn btn-primary btn-sm" id="follow-button" class="follow-button">Follow</button>
         </form>
         {% endif %}
     </div>
