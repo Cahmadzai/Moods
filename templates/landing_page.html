@@ -45,13 +45,18 @@
 
 
 
+<header class="welcome-header">
+  Welcome!
+</header>
 
-  <h1>Welcome!</h1>
+ <!-- <header class="community-header">
+  community!
+</header>  -->
 
-
+<!-- 
   <ul>
     <li><a href="/login">Login or Create an account</a></li>
-  </ul>
+  </ul> -->
 
  
 
@@ -60,7 +65,7 @@
 
  
   
-      
+  
       <header class="feel-label">
         <h1>Feel.</h1>
       </header>
@@ -73,12 +78,92 @@
         <h1>Share.</h1>
       </header> 
 
+      <div class="image-container">
       <img src="/static/images/sand.jpg" class="img-fluid" alt="sand" id="sand">
     
 
       <img src="/static/images/beach.jpg" class="img-fluid" alt="beach" id="beach">
 
       <img src="/static/images/cap.jpg" class="img-fluid" alt="cap" id="cap">
+    </div>
+
+
+
+  {% for msg in get_flashed_messages() %}
+    <p class="flash-msg">
+      {{ msg }}
+    </p>
+  {% endfor %}
+
+<div class="login-form-container">
+  <div class="row">
+    <div class="col">
+  
+    <header class="login-header">
+    <h2>Login</h2>
+    </header>
+
+    
+
+    <form action="/login" method="POST">
+    <p>
+      Email <input type="text" name="email">
+    </p>
+
+    <p>
+      Password <input type="password" name="password">
+    </p>
+
+    <p>
+      <input type="submit">
+    </p>
+    </form>
+  </div>
+</div>
+</div>
+
+
+<div class="create-account-form-container">
+  <div class="row">
+    <div class="col">
+
+
+    <header class="sign-up-header">
+    <h2>Sign up</h2>
+    </header>
+    
+    
+    <form action="/users" method="POST">
+
+    <p>
+      Username <input type="text" name="user_handle">
+    </p>
+    <p>
+      Email <input type="text" name="email">
+    </p>
+
+    <p>
+      Password <input type="password" name="password">
+    </p>
+
+    <p>
+      <input type="submit">
+    </p>
+    </form>
+  </div>
+</div>
+</div>
+
+
+<!-- <p class="case-sensitive">Usernames, emails and passwords are case 
+<br>sensitive to better protect your login information.</p> -->
+
+
+
+
+
+
+
 
 
 
