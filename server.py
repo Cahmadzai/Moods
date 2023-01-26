@@ -15,6 +15,7 @@ import os
 app = Flask(__name__)
 app.secret_key = "dev"
 #configuring jinja2
+#API key bug, not appearing on landing page.
 app.jinja_env.undefined = StrictUndefined
 API_KEY = os.environ['X_RapidAPI_Key']
 
