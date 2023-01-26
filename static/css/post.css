@@ -1,7 +1,9 @@
 
 .whole-page {
     position: relative;
-    bottom: 250px;
+    bottom: 255px;
+    flex-direction: column;
+    
     
 }
 
@@ -90,9 +92,16 @@ div {
         padding-bottom: 34px;
         right: 80px;
         bottom: 18px;
-        height: 345px;                   
+        z-index: 0;                   
 }
 
+.flash-msg{
+    position: absolute;
+    top: 10px;
+    left:35%;
+    color: black;
+    z-index: 1;
+}
 
 .logout-link{
     float: right;
@@ -123,9 +132,7 @@ div {
     padding-bottom: .75rem;
     box-shadow: 5px 5px 10px rgb(224, 223, 223);
     margin-bottom: 5%;
-   
-    
-    
+  
 }
 
 .user_handle_header{
