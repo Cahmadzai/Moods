@@ -51,6 +51,10 @@
         "mood_type": "excited"
     },
 
+    { 
+        "mood_type": "frustrated"
+    },
+
     {
         "mood_type": "grateful"
     },
