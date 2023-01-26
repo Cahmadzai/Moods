@@ -8,10 +8,11 @@ import crud
 import model
 import server
 
-os.system('dropdb model')
-os.system('createdb model')
+# os.system('dropdb model')
+# os.system('createdb model')
 
 model.connect_to_db(server.app)
+model.db.drop_all()
 model.db.create_all()
 
 
