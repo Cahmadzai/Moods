@@ -24,7 +24,7 @@ API_KEY = os.environ['X_RapidAPI_Key']
 def homepage():
     """View homepage."""
 
-    return render_template('homepage.html')
+    return redirect('/landing_page')
 
 
 #creating landing page
@@ -34,10 +34,6 @@ def landing_page():
     
     return render_template('landing_page.html', API_KEY = API_KEY )
 
-#creating login page
-@app.route('/login')
-def login():
-    return render_template('login.html')
 
 #creating a route for account creation
 @app.route('/users', methods=['POST'])
@@ -61,7 +57,7 @@ def register_user():
         flash("Account created! Please log in.")
         
 
-    return redirect("/login")
+    return redirect("/landing_page")
 
 #login
 @app.route('/login', methods=["POST"])
@@ -74,18 +70,18 @@ def process_login():
     user = crud.get_user_by_email(email)
     if not user or user.password != password:
         flash("The email or password you entered was incorrect.")
-        return redirect("/login")
+        return redirect("/landing_page")
     else:
         # Log in user by storing the user's email in session
         session["user_email"] = user.email
         flash(f"Welcome back, {user.email}!")
-        return redirect("/")
+        return redirect("/status_posts")
 
 #logout
 @app.route('/logout')
 def logout():
     session.clear()
-    return redirect('/login')
+    return redirect('/landing_page')
 
 
 
@@ -117,7 +113,7 @@ def all_status_posts():
     #checks if user is logged in 
     if "user_email" not in session:
         flash("Please log in to view all status posts.")
-        return redirect("/login")
+        return redirect("/landing_page")
     else:
         status_posts = crud.get_all_status_posts()
         return render_template('all_status_posts.html', status_posts=status_posts)
@@ -151,7 +147,7 @@ def all_user_statuses():
     #might not even need this? User can't get to profile page without logging in
     if "user_email" not in session:
         flash("Please log in to view your profile.")
-        return redirect("/login")
+        return redirect("/landing_page")
     else:
         user_email = session["user_email"]
         user = crud.get_user_by_email(user_email)
@@ -166,7 +162,7 @@ def all_following():
     #checks if user is logged in 
     if "user_email" not in session:
         flash("Please log in to view users you follow.")
-        return redirect("/login")
+        return redirect("/landing_page")
     else:
         user_email = session["user_email"]
         user = crud.get_user_by_email(user_email)
