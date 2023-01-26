@@ -1,0 +1,130 @@
+.Login-image{
+    position: relative;
+    top: 30%;
+}
+
+/* .image-container {
+    margin-top: 120px;
+    
+} */
+
+/* #beach{
+    display: flex;
+    margin-top: 40%;
+    margin-left: 2%;
+    max-width: 300px;
+    max-height: 300px; 
+    border-color: antiquewhite; 
+}
+
+#cap{
+    display: flex;
+    padding-bottom: 100px;
+    margin-left: 8%;
+    max-width: 300px;
+    max-height: 300px;
+    border-color: antiquewhite;
+}
+
+
+
+#forest{
+    display: flex;
+    padding-top: 540px;
+    margin-left: 2%;
+    max-width: 300px;
+    max-height: 300px;
+    border-color: antiquewhite; 
+} */
+
+#sand {
+    position: relative;
+    float: right;
+    margin-top: -20%;
+    padding-left: 20px;
+    width: 40%;
+    z-index: 0;
+
+}
+
+
+#beach {
+    position: relative;
+    float: right;
+    margin-top: 2%;
+    margin-left: 40%;
+    padding-left: 40px;
+    width: 42%;
+    z-index: 0;   
+
+}
+
+
+
+#cap {
+    position:  relative;
+    float: right;
+    margin-top: 2%;
+    padding-left: 20px;
+    width: 40%;
+    z-index: 0;
+    
+
+}
+
+
+
+/* .landing-logo {
+    position: absolute;
+    padding-bottom: 34px;
+    right: 60px;
+    bottom: 18px;
+    z-index: 1;                   
+} */
+
+
+.feel-label{
+    position: absolute;
+    margin-top: -20%;
+    height: 7%;
+    margin-left: 77.5%;
+    z-index: 2;
+    font-family: poppins;
+    color: black;
+    background-color: white;   
+}
+
+.express-label{
+    position: absolute;
+    margin-top: 7%;
+    height: 7%;
+    margin-right: 16%;
+    margin-left: 74.5%;
+    z-index: 2;
+    font-family: poppins;
+    color: black;
+    background-color: white;   
+}
+
+.share-label{
+    position: absolute;
+    margin-top: 33.5%;
+    height: 7%;
+    margin-right: 15%;
+    margin-left: 76%;
+    z-index: 2;
+    font-family: poppins;
+    color: black;
+    background-color: white;   
+}
+
+
+.my-api-class {
+    position: relative;
+    z-index: 999;
+    bottom: 0;
+    left: 0;
+    font-size: 200px;
+    color: blue;
+  }
+  
