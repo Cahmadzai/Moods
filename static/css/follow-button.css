@@ -1,42 +1,35 @@
-.unfollow-button{
-    width: 77px;
-    border-radius: 5px;
-    height: 38px;
-    bottom: 10px;
+#unfollow-button{
     position: relative;
     left: 220px;
-    top: -63px;
-    background: rgb(6, 203, 163);
-    border-color: #06cba3;
+    top: -0px;
+    width: 80px;
+    
 }
 
-.follow-button{
-    width: 77px;
-    border-radius: 5px;
-    height: 38px;
-    bottom: 10px;
+#follow-button{
     position: relative;
+    width: 80px;
     left: 220px;
-    top: -63px;
-    background: rgb(6, 203, 163);
-    border-color: #06cba3;  
+    top: -0px  
 }
 
 .user-profile-header{
     position: relative;
-    bottom: 20px;
+    bottom: -40px;
     right: 20px;
     padding-left: .75rem;
     font-family: Poppins;
     font-weight: 600;
-    display: flex;
-    flex-wrap: wrap;                    
+                       
 }
 
 .user-profile-back-button{
     position: relative;
-    right: 70px;
-    margin-bottom: 5%;
+    font-family: Roboto;
+    right: 10px;
+    top: -90px;
+    font-size: 16px;
+    
 }
 
 
