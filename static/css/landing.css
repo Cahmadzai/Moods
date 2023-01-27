@@ -5,6 +5,8 @@
 
 .welcome-header{
     position: relative;
+    font-weight: 450;
+    font-family: poppins;
     font-size: 45px;
     margin-left: 9.5%;
     top: -155px;
@@ -160,11 +162,29 @@
 
   .login-form-container{
     position: relative;
-    z-index: 999;
+    font-family: poppins;
+    z-index: 800;
     margin-top: -10%;
     margin-bottom: 0%;
-    margin-left: 9%
-    
+    margin-left: 9%  
+}
+
+.secondary-login{
+    border-color: rgb(6, 203, 163);
+    color: rgb(6, 203, 163);
+    font-weight: 600;
+    margin-left: 85%;
+    margin-top: -50%;
+    font-family: Roboto;
+}
+
+.secondary-signup{
+    border-color: rgb(6, 203, 163);
+    color: rgb(6, 203, 163);
+    font-weight: 600;
+    margin-left: 75%;
+    margin-top: -55%;
+    font-family: Roboto;
 }
 
     
@@ -178,7 +198,7 @@
 
   .form-control{
     width: 300px;
-    left: 20px;
+    left: 23px;
     
     
   }
@@ -186,14 +206,17 @@
     .create-account-form-container{
         position: relative;
         bottom: 80px;
+        font-family: poppins;
         margin-left: 9%
+       
   } 
 
   header.sign-up-header h2{
     display: inline-block;
-    margin-left: 2% 
-       
+    margin-left: 2%       
   } 
+
+  
 
 
 
@@ -203,12 +226,14 @@
     background-color:rgb(6, 203, 163);
     margin-bottom: 25%;
     display: left !important;
+    font-family: roboto;
 
   }
 
    .custom-login-btn {
     background-color:rgb(6, 203, 163);
-    margin-bottom: -25%;
+    margin-bottom: -12%;
+    font-family: roboto;
     
     
   }
