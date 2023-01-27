@@ -10,25 +10,19 @@
 
 /* Navigation bar. */
 
-.flash-msg{
-    
-}
   
 .navbar {
     top: 30%;
     margin-bottom: 7.5%;
     margin-top: 8%;
-    margin-left: 1.5%;
-    
-      
+    margin-left: 1.5%;     
 }
 
 .nav-item {
     
     padding-left: 4rem;
-    font-family: Roboto;
-    
-    
+    font-family: roboto;
+     
 }
 
 
@@ -73,11 +67,11 @@
 }
 
 #mood-select {
-    
-    padding: .3rem;
-    font-weight: 400;
-    width: 150px;
-    font-family: Roboto;
+    margin-left: 2%;
+    font-size: 15.5px;
+    padding: .1rem;
+    width: 130px;
+    font-family: poppins;
     border-radius: 5px; 
     }
 
@@ -95,7 +89,7 @@
 
 /* status description box. */
 .form-floating{
-    
+    font-family: Roboto;
     padding-left: .75rem; 
 }
 
