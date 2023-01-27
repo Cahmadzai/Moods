@@ -12,7 +12,7 @@ import server
 # os.system('createdb model')
 
 model.connect_to_db(server.app)
-model.db.drop_all()
+# model.db.drop_all()
 model.db.create_all()
 
 
