@@ -6,8 +6,8 @@
 .welcome-header{
     position: relative;
     font-size: 45px;
-    margin-left: 16%;
-    top: -130px;
+    margin-left: 9.5%;
+    top: -150px;
     flex: wrap;
 
 }
@@ -149,17 +149,18 @@
 
 .my-api-class {
     position: relative;
+    font-family: poppins;
     z-index: 999;
-    bottom: 0;
-    left: 0;
-    font-size: 200px;
-    color: blue;
+    bottom: 680px;
+    left: 84px;
+    font-size: 16px;
+    color: rgb(6, 203, 163);
   }
 
   .login-form-container{
     position: relative;
     margin-top: -8%;
-    margin-left: 15%
+    margin-left: 9%
     
    /* flex-direction:column;  */
     
