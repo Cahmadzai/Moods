@@ -3,60 +3,8 @@
     top: 30%;
 }
 
-.welcome-header{
-    position: relative;
-    font-weight: 400;
-    font-family: poppins;
-    font-size: 45px;
-    margin-left: 9.5%;
-    top: -155px;
-    flex: wrap;
-
-}
-
-/* .community-header{
-    position: relative;
-    font-size: 45px;
-    margin-left: 12%;
-    top: -120px;
-    flex: wrap;
-}  */
 
 
-
-/* .image-container {
-    margin-top: 120px;
-    
-} */
-
-/* #beach{
-    display: flex;
-    margin-top: 40%;
-    margin-left: 2%;
-    max-width: 300px;
-    max-height: 300px; 
-    border-color: antiquewhite; 
-}
-
-#cap{
-    display: flex;
-    padding-bottom: 100px;
-    margin-left: 8%;
-    max-width: 300px;
-    max-height: 300px;
-    border-color: antiquewhite;
-}
-
-
-
-#forest{
-    display: flex;
-    padding-top: 540px;
-    margin-left: 2%;
-    max-width: 300px;
-    max-height: 300px;
-    border-color: antiquewhite; 
-} */
 
 #sand {
     position: relative;
@@ -96,14 +44,6 @@
 
 
 
-/* .landing-logo {
-    position: absolute;
-    padding-bottom: 34px;
-    right: 60px;
-    bottom: 18px;
-    z-index: 1;                   
-} */
-
 
 .feel-label{
     position: absolute;
@@ -138,10 +78,11 @@
     margin-left: 76%;
     z-index: 2;
     font-family: poppins;
-    color: rgb(248, 245, 245);
-   
+    color: rgb(248, 245, 245); 
       
 }
+
+
 
 .image-container {
     position: relative;
@@ -154,11 +95,23 @@
     position: relative;
     font-family: poppins;
     z-index: 999;
-    bottom: 860px;
-    left: 89px;
+    bottom: 960px;
+    left: 87px;
     font-size: 18px;
     color: rgb(6, 203, 163);
   }
+
+
+  .welcome-header{
+    position: relative;
+    font-weight: 400;
+    font-family: poppins;
+    font-size: 45px;
+    margin-left: 9.5%;
+    top: -170px;
+    flex: wrap;
+
+}
 
   .login-form-container{
     position: relative;
@@ -222,10 +175,6 @@
     font-weight: 200;
   }
 
-  
-
-
-
 
 
   .custom-submit-btn {
@@ -250,12 +199,5 @@
 }
 
 
-
-  /* .case-sensitive{
-    margin: 10px 0;
-    font-family: roboto;
-    font-size: 13px;
-    margin-left: 10%;
-    margin-top: -30%;
-  } */
+  
   
