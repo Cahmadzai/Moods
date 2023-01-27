@@ -1,6 +1,6 @@
 #unfollow-button{
     position: relative;
-    left: 220px;
+    left: 240px;
     top: -0px;
     width: 80px;
     
@@ -9,14 +9,14 @@
 #follow-button{
     position: relative;
     width: 80px;
-    left: 220px;
+    left: 240px;
     top: -0px  
 }
 
 .user-profile-header{
     position: relative;
     bottom: -40px;
-    right: 20px;
+    right:16px;
     padding-left: .75rem;
     font-family: Poppins;
     font-weight: 600;
