@@ -7,7 +7,7 @@
     position: relative;
     font-size: 45px;
     margin-left: 9.5%;
-    top: -150px;
+    top: -155px;
     flex: wrap;
 
 }
@@ -148,44 +148,74 @@
 }
 
 .my-api-class {
+    display: left !important;
     position: relative;
     font-family: poppins;
     z-index: 999;
-    bottom: 680px;
-    left: 84px;
-    font-size: 16px;
+    bottom: 860px;
+    left: 89px;
+    font-size: 18px;
     color: rgb(6, 203, 163);
   }
 
   .login-form-container{
     position: relative;
-    margin-top: -8%;
+    z-index: 0;
+    margin-top: -10%;
+    margin-bottom: 0%;
     margin-left: 9%
+
+}
+
     
-   /* flex-direction:column;  */
+.card-header{
+    font-size: 18px;
+    font-weight: bold;
+    padding-bottom: 0px;
+}
+
     
-   }
 
   .form-control{
     width: 300px;
     left: 20px;
     
+    
   }
 
     .create-account-form-container{
-    position: relative;
-    margin-top: 5%;
-    margin-left: 15%
+        position: relative;
+        bottom: 80px;
+        margin-left: 9%
   } 
 
   header.sign-up-header h2{
-    position: relative;
+    display: inline-block;
+    margin-left: 2% 
+       
+  } 
 
-    margin-top: -5%;
-    margin-left: 15%
-    
-    
+
+
+
+
+  .custom-submit-btn {
+    background-color:rgb(6, 203, 163);
+    margin-bottom: 25%;
+
   }
+
+   .custom-login-btn {
+    background-color:rgb(6, 203, 163);
+    margin-bottom: -25%;
+  }
+
+  form {
+    display: grid;
+    grid-template-rows: repeat(3, 5.2rem);
+}
+
+
 
   /* .case-sensitive{
     margin: 10px 0;
