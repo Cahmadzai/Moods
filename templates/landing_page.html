@@ -95,6 +95,7 @@
     </p>
   {% endfor %}
 
+
 <div class="login-form-container">
   <div class="row">
     <div class="col">
@@ -118,7 +119,7 @@
       </div>
 
       <div class="pt-1 mb-4">
-        <button class="btn btn-info btn-lg btn-block" type="submit">Login</button>
+        <button class="btn btn-info btn-lg btn-block custom-login-btn" type="submit">Login</button>
       </div>
    
     </form>
@@ -128,36 +129,36 @@
 
 
 <div class="create-account-form-container">
+  <header class="sign-up-header">
+    <h2>Sign up</h2>
+    </header>
   <div class="row">
     <div class="col">
 
 
-    <header class="sign-up-header">
-    <h2>Sign up</h2>
-    </header>
+    
     
     
     <form action="/users" method="POST">
 
-    <p>
-      Username <input type="text" name="user_handle">
-    </p>
-    <p>
-      Email <input type="text" name="email">
-    </p>
+      <div class="form-outline mb-4">
+        <input type="text" name="user_handle" class="form-control form-control-lg" />
+        <label class="form-label">Username</label>
+      </div> 
+   
+      <div class="form-outline mb-4">
+        <input type="text" name="email" class="form-control form-control-lg" />
+        <label class="form-label">Email</label>
+      </div> 
 
-    <p>
-      Password <input type="password" name="password">
-    </p>
+      <div class="form-outline mb-4">
+        <input type="password" name="password" class="form-control form-control-lg" />
+        <label class="form-label">Password</label>
+      </div>
 
-    <div class="form-outline mb-4">
-      <input type="password" name="password" class="form-control form-control-lg" />
-      <label class="form-label">Password</label>
-    </div>
-
-    <div class="pt-1 mb-4">
-      <button class="btn btn-info btn-lg btn-block" type="submit">Submit</button>
-    </div>
+      <div class="pt-1 mb-4">
+        <button class="btn btn-info btn-lg btn-block custom-submit-btn" type="submit">Submit</button>
+      </div>
   
     </form>
   </div>
@@ -165,12 +166,24 @@
 </div>
 
 
-<!-- <p class="case-sensitive">Usernames, emails and passwords are case 
-<br>sensitive to better protect your login information.</p> -->
+ <!-- <label class="case-sensitive">Usernames, emails and passwords are case 
+<br>sensitive to better protect your login information.</label> -->
 
 
 
-
+<div class="card">
+  <div class="card-header">
+    Mpath
+  </div>
+  <div class="card-body">
+    <blockquote class="blockquote mb-0">
+      <br>
+      <footer class="blockquote-footer">Hat image by <cite title="Source Title"> <a href="https://pixabay.com/users/nickype-10327513/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=7278216">Nicky ❤️🌿🐞🌿❤️</a> from <a href="https://pixabay.com//?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=7278216">Pixabay</a></cite></footer>
+      <footer class="blockquote-footer">Beach image by <cite title="Source Title"> <a href="https://pixabay.com/users/foundry-923783/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=832346">Foundry Co</a> from <a href="https://pixabay.com//?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=832346">Pixabay</a></cite></footer>
+        <footer class="blockquote-footer">Shells image by <cite title="Source Title"> <a href="https://pixabay.com/users/croisy-1670164/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1337565">D.</a> from <a href="https://pixabay.com//?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1337565">Pixabay</a></cite></footer>
+    </blockquote>
+  </div>
+</div>
 
 
 
