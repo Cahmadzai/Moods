@@ -1,9 +1,9 @@
 [
     {
       "user_id": "1",
-      "user_handle": "HelloWorld123",
-      "email": "HelloWorld123@gmail.com",
-      "password": "hello123"
+      "user_handle": "Ningchou",
+      "email": "Ningchou@gmail.com",
+      "password": "ning"
     },
 
     {
@@ -14,16 +14,31 @@
     },
     {
         "user_id": "3",
-        "user_handle": "Bob29",
-        "email": "bob29@gmail.com",
-        "password": "bobismyname"
+        "user_handle": "Emma",
+        "email": "Emmaderry@gmail.com",
+        "password": "emma"
       },
 
       {
         "user_id": "4",
-        "user_handle": "Joey19",
-        "email": "Joey19@gmail.com",
-        "password": "joefosho"
+        "user_handle": "MartinZoe",
+        "email": "Martinzoe@gmail.com",
+        "password": "martin"
+      },
+
+      {
+        "user_id": "5",
+        "user_handle": "Mina25",
+        "email": "Mina25@gmail.com",
+        "password": "mina"
+      },
+
+      {
+        "user_id": "6",
+        "user_handle": "Martin",
+        "email": "Martin@gmail.com",
+        "password": "mtin"
+
       }
 
    
