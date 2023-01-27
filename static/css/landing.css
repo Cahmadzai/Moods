@@ -5,7 +5,7 @@
 
 .welcome-header{
     position: relative;
-    font-weight: 450;
+    font-weight: 400;
     font-family: poppins;
     font-size: 45px;
     margin-left: 9.5%;
@@ -207,14 +207,20 @@
         position: relative;
         bottom: 80px;
         font-family: poppins;
+        
         margin-left: 9%
        
   } 
 
   header.sign-up-header h2{
     display: inline-block;
+    font-weight: 200;
     margin-left: 2%       
   } 
+
+  header.login-header h2{
+    font-weight: 200;
+  }
 
   
 
