@@ -101,6 +101,17 @@
     color: rgb(6, 203, 163);
   }
 
+#inspire-quote{
+    display: left !important;
+    position: relative;
+    font-family: poppins;
+    z-index: 999;
+    bottom: 960px;
+    left: 87px;
+    font-size: 18px;
+    color: rgb(6, 203, 163);
+}
+
 
   .welcome-header{
     position: relative;
