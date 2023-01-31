@@ -26,10 +26,10 @@ class User(db.Model):
         return f'<User user_id={self.user_id} user_handle={self.user_handle} email={self.email}>'
 
 
-#creating Follower class
-#query directly from followers table instead of db.
-#and when clicking button for follow
-#use user id to query in follow table
+# Creating Follow class
+# Query directly from follows table instead of db.relationship to minimize confusion
+# and when clicking button for follow
+# Use user id to query in follow table
 class Follow(db.Model):
     """A user can follow another user or be followed."""
 

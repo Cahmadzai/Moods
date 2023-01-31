@@ -11,11 +11,10 @@ import os
 
 
 
-#configuring the Flask instance.  Creating secret key to allow flash and session to work
+# Configuring the Flask instance.  Creating secret key to allow flash and session to work
 app = Flask(__name__)
 app.secret_key = "dev"
-#configuring jinja2
-#API key bug, not appearing on landing page.
+# Configuring jinja2
 app.jinja_env.undefined = StrictUndefined
 API_KEY = os.environ['X_RapidAPI_Key']
 
@@ -28,7 +27,7 @@ def homepage():
     return redirect('/landing_page')
 
 
-#creating landing page
+# Creating landing page
 @app.route('/landing_page')
 def landing_page():
     """A user starts on a landing page"""
@@ -36,7 +35,7 @@ def landing_page():
     return render_template('landing_page.html', API_KEY = API_KEY )
 
 
-#creating a route for account creation
+# Creating a route for account creation
 @app.route('/users', methods=['POST'])
 def register_user():
     """Create a new user."""
@@ -60,7 +59,7 @@ def register_user():
 
     return redirect("/landing_page")
 
-#login
+# Login
 @app.route('/login', methods=["POST"])
 def process_login():
     """Process user login."""
@@ -78,23 +77,19 @@ def process_login():
         flash(f"Welcome back, {user.email}!")
         return redirect("/status_posts")
 
-#logout
+# Logout
 @app.route('/logout')
 def logout():
     session.clear()
     return redirect('/landing_page')
 
-
-
 @app.route('/search_status_posts', methods=['GET'])
 def search_status_posts():
     user_handle = request.args.get('user_handle')
-    #print(f"this is user_handle **** {user_handle}")
     if not user_handle:
         flash('Please enter a user handle')
         return redirect('/status_posts')
     users = crud.get_users_by_handle(user_handle)
-    #print(f"this is users**** {users}")
     if not users:
         flash('No user found with this handle')
         return redirect('/status_posts')
@@ -102,24 +97,22 @@ def search_status_posts():
     for user in users:
         posts = crud.get_user_statuses(user.user_id)
         status_posts.extend(posts)
-        #print(f"this is status posts **** {status_posts}")
     return render_template('search_results.html', status_posts=status_posts)
 
-
 # Route to get all status_posts
-# Calling function from crud to get all status posts
 @app.route('/status_posts')
 def all_status_posts():
     """View all status_posts from all users."""
-    #checks if user is logged in 
+    # Checks if user is logged in 
     if "user_email" not in session:
         flash("Please log in to view all status posts.")
         return redirect("/landing_page")
     else:
+        # Calling function from crud to get all status posts
         status_posts = crud.get_all_status_posts()
         return render_template('all_status_posts.html', status_posts=status_posts)
 
-#create route for a user profile page
+# Create route for a user profile page
 @app.route("/users/<user_id>")
 def show_user_profile_page(user_id):
     """Show details on a particular user.""" 
@@ -132,20 +125,18 @@ def show_user_profile_page(user_id):
     if user.user_id == following_user.user_id:
         return redirect('/profile')
     following_user_id = following_user.user_id
-    #gets follow and makes sure not equal to none
+    # Gets follow and makes sure not equal to none
     is_following = crud.get_follow(followed_user_id, following_user_id) != None
     print(is_following)
-    # user_email = session["user_email"]
 
     return render_template('user_profile.html', status_posts=status_posts, user_handle=user.user_handle, is_following=is_following)
 
-
-#creating a route for a user profile page
+# Creating a route for a user profile page
 @app.route('/profile')
 def all_user_statuses():
     """A user can view all of their statuses on their profile page"""
-    #if no user email == no one logged in - redirect to home
-    #might not even need this? User can't get to profile page without logging in
+    # If no user email == no one logged in - redirect to home
+    # Might not even need this? User can't get to profile page without logging in
     if "user_email" not in session:
         flash("Please log in to view your profile.")
         return redirect("/landing_page")
@@ -160,23 +151,23 @@ def all_user_statuses():
 @app.route('/following')
 def all_following():
     """View all followed users and their statuses"""
-    #checks if user is logged in 
+    # Checks if user is logged in 
     if "user_email" not in session:
         flash("Please log in to view users you follow.")
         return redirect("/landing_page")
     else:
         user_email = session["user_email"]
         user = crud.get_user_by_email(user_email)
-        #gets list of followed users and pass in user_id
+        # Gets list of followed users and pass in user_id
         followed_users = crud.get_users_followed(user.user_id)
-        #pass in followed users to be displayed in template
+        # Pass in followed users to be displayed in template
         status_posts = []
         for followed_user in followed_users:
             status_posts.append(followed_user.status_posts)
 
         return render_template('all_following.html', followed=followed_users, status_posts=status_posts, user_handle=user.user_handle)
 
-#follow route
+# Follow route
 @app.route('/follow', methods=['POST'])
 def follow():
     """Follow a user"""
@@ -202,7 +193,7 @@ def follow():
         flash('An error has occured.  Unable to follow user.')
         return redirect('/following') 
 
-#unfollow route
+# Unfollow route
 @app.route('/unfollow', methods=['POST'])
 def unfollow():
     """Unfollow a user"""
@@ -230,22 +221,18 @@ def unfollow():
 #Route to post a status
 @app.route('/profile', methods =['POST'])
 def post_a_status():
+    """Post a status"""
     # Using request.form because mood and description must be present to post
-    # Retrieving the 'mood' and 'description' form data
-    mood = request.form["mood"] 
-    status_description = request.form["description"]
-    #getting today's date/time
+    # Retrieving the 'mood' and 'description'form data
+    mood = request.form.get("mood") 
+    status_description = request.form.get("description")
+    # Getting today's date/time
     post_create_date = datetime.now()
-    #Retrieve user with matching email from session
+    # Retrieve user with matching email from session
     user_email = session["user_email"]
     user = crud.get_user_by_email(user_email)
-    #Retrieve mood value and return mood type
+    # Retrieve mood value and return mood type
     mood_from_db = crud.get_mood_type(mood)
-    print(f"this is MOOD FROM DB **** {mood_from_db}")
-    print(f"this is MOOD **** {mood}")
-    #Bug * trying to set a new mood that doesn't exist.  Happy, sad, frustrated existed in the database already so they work.
-    #Need to add logic, if mood form db == none then create mood (crud function)
-    #otherwise go to line 250
     # Creating a new status post
     new_status_post = crud.create_status(user.user_id, status_description, post_create_date, mood_from_db.mood_id)
 
@@ -255,16 +242,15 @@ def post_a_status():
     flash('Your status has been posted!')
     #Might need to change this in the future so that when posting a new status
     #it stays on the page that the form is on.  This would be done through
-    #Event listner, AJAX request, DOM manipulation, through front end javascript
+    #Event listner, AJAX request, DOM manipulation, through front-end javascript
     return redirect('/status_posts') 
 
 
 #Route to post a comment
 @app.route('/post_a_comment', methods =['POST'])
 def post_a_comment():
-    #change to request.form.get
-    comment_description = request.form["comment-description"]
-    status_id = request.form["status-id"]
+    comment_description = request.form.get("comment-description")
+    status_id = request.form.get("status-id")
     post_create_date = datetime.now()
    
     user_email = session["user_email"]
@@ -280,19 +266,17 @@ def post_a_comment():
 
 
 
-#delete a status
-#int tells Flask to expect integer value for the status_id
-#if just use <status_id> would treat URL parameter as string
+# Delete a status
+# Int tells Flask to expect integer value for the status_id
+# If I just use <status_id> would treat URL parameter as string
 @app.route('/delete-status/<int:status_id>', methods=['POST'])
 def delete_status(status_id):
     """Delete a status by id."""
-    #may want to add authorization checks to make sure only user that
-    #posted status can delete (come back to this)
     if crud.delete_status(status_id):
         flash("Status deleted.")
     else:
         flash("There was an error when trying to delete your status. Please try again")
-        #I might need to use AJAX to fix these redirects and stay on page without reloading
+        # Use AJAX to fix these redirects and stay on page without reloading
     return redirect("/profile")
 
 @app.route('/delete-comment/<int:comment_id>', methods=['POST'])
@@ -303,7 +287,6 @@ def delete_comment(comment_id):
     else:
         flash("There was an error when trying to delete your comment. Please try again")
     return redirect("/profile")
-
 
 
 if __name__ == "__main__":
